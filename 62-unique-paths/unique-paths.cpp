@@ -47,12 +47,37 @@ class Solution {
         Space Complexity : O(m*n)
     */    
 
+
+    int solution3(int m, int n){
+        int N = m+n-2;
+        int r = m-1;
+
+        double res = 1;
+
+        for(int i = 1;i<=r;i++){
+            res = res *(N-r+i)/i;
+        }
+
+        return (int)res;
+    }
+    
+    /*
+        Analysis:
+        Time Complexity : O(m-1)
+        Space Complexity : O(1)
+    */    
+
 public:
     int uniquePaths(int m, int n) {
+
+        // Brute Force using the recursion
         // return countPaths(0,0,m,n);
 
-        vector<vector<int>> dp(n, vector<int>(m, -1));
+        // dp Approach ----> improved Solution
+        // vector<vector<int>> dp(n, vector<int>(m, -1));
+        // return countPaths2(0,0,m,n,dp);
 
-        return countPaths2(0,0,m,n,dp);
+        // Optimised Approach
+        return solution3(m,n);
     }
 };
