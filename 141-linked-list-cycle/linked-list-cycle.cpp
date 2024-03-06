@@ -9,19 +9,10 @@
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
-        
-        //check for the base case 
-        if(head == NULL || head->next == NULL){
-            return false;
-        }
-
-        // use the slow and fast pointer approach
         ListNode *slow = head;
-        ListNode *fast = head;
+        ListNode* fast = head;
 
-        while(fast!=NULL && fast->next!=NULL){
-
-            // move the slow and fast pointers
+        while(fast!=NULL && fast->next !=NULL){
             slow = slow->next;
             fast = fast->next->next;
 
