@@ -47,8 +47,35 @@ public:
         Time complexity : O(nlogn)
         Space Complexity : O(logn)
     */
-        
+
+    // Solution - 3 By using the Map
+
+    int solution3(vector<int>nums){
+        map<int,int>mp;
+
+        for(auto n:nums){
+            mp[n]++;
+        }
+
+
+        // traverse the map and find the frequncy element whose frequecy is 2
+        for(auto m:mp){
+            if(m.second >= 2){
+                return m.first;
+            }
+        }
+
+        return 0;
+    }
+
+    /*
+        Analysis:
+        Time Complexity : O(nlogn)
+        Space Complexity : O(1)
+    */    
+
+
     int findDuplicate(vector<int>& nums) {
-        return solution2(nums);
+        return solution3(nums);
     }
 };
