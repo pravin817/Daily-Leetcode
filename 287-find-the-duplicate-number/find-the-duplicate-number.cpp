@@ -26,7 +26,6 @@ public:
 
 
     // Solution - 2 By using the sorting
-
     int solution2(vector<int>nums){
         int n = nums.size();
         // sort the vector
@@ -38,7 +37,6 @@ public:
                 return nums[i];
             }
         }
-
         return 0;
     }
 
@@ -49,7 +47,6 @@ public:
     */
 
     // Solution - 3 By using the Map
-
     int solution3(vector<int>nums){
         map<int,int>mp;
 
@@ -57,14 +54,12 @@ public:
             mp[n]++;
         }
 
-
         // traverse the map and find the frequncy element whose frequecy is 2
         for(auto m:mp){
             if(m.second >= 2){
                 return m.first;
             }
         }
-
         return 0;
     }
 
@@ -85,14 +80,11 @@ public:
         }while(slow!=fast);
 
         // start the fast pointer from nums[0];
-
         fast = nums[0];
-
         while(slow!=fast){
             slow = nums[slow];
             fast = nums[fast];
         }
-
         return slow;
     }
 
@@ -103,6 +95,6 @@ public:
     */    
 
     int findDuplicate(vector<int>& nums) {
-        return solution3(nums);
+        return solution4(nums);
     }
 };
