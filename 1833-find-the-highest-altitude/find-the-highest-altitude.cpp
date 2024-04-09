@@ -10,8 +10,8 @@ public:
         // ans.push_back(gain[0]);
 
         // Calculate the prefix_sum
-        for(int i = 1;i<len;i++){
-            ans.push_back(ans[i-1]+gain[i]);
+        for(int i = 0;i<len;i++){
+            ans.push_back(ans[i]+gain[i]);
         }
 
         // Find the maximum number from the prefix_sum as the highest altitude
@@ -51,8 +51,8 @@ public:
         Time Complexity : O(N)
         Space Complexity : O(1)
     */
-        
+
     int largestAltitude(vector<int>& gain) {
-        return solution2(gain);
+        return solution1(gain);
     }
 };
