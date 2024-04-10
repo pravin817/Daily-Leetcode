@@ -37,7 +37,42 @@ public:
         Space Complexity : O(n) ----> for the result if excluded then O(1)
     */    
 
+    vector<int>solution2(vector<int>&deck){
+        int n = deck.size();
+
+        queue<int>q;
+
+        vector<int>result(n,0);
+
+        // Sort
+        sort(deck.begin(),deck.end());
+
+        for(int i = 0;i<n;i++){
+            q.push(i);
+        }
+
+
+        for(int i = 0;i<n;i++){
+            int idx = q.front();
+            q.pop();
+
+            result[idx] = deck[i];
+
+            if(!q.empty()){
+                q.push(q.front());
+                q.pop();
+            }
+        }
+        return result;
+    }
+
+    /*
+        Analysis:
+        Time Complexity : O(nlogn)
+        Space Complexity : O(n) 
+    */    
+
     vector<int> deckRevealedIncreasing(vector<int>& deck) {
-       return solution1(deck);
+       return solution2(deck);
     }
 };
