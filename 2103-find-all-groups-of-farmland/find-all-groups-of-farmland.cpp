@@ -77,7 +77,7 @@ public:
                     int r2 = -1;
                     int c2 = -1;
 
-                    DFS(land,i,j,r2,c2);
+                    BFS(land,i,j,r2,c2);
 
                     ans.push_back({r1,c1,r2,c2});    
                  }
