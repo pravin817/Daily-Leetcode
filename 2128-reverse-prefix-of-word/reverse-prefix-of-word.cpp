@@ -1,35 +1,19 @@
 class Solution {
 public:
     string reversePrefix(string word, char ch) {
-        string first = "";
-
-        int i;
-        for(i = 0;i<word.length();i++){
+        for(int i = 0;i<word.length();i++){
             if(word[i] == ch){
-                first +=ch;
+                reverse(begin(word),begin(word)+i+1);
                 break;
-            }else{
-                first+=word[i];
             }
         }
 
-        string second ="";
-
-        if(i == word.length()){
-            return first;
-        }
-
-        if(i != word.length()){
-             second = word.substr(i+1);
-        }
-
-        reverse(first.begin(),first.end());
-        return first+second;
+        return word;
     }
 };
 
 /*
     Analysis:
     Time Complexity : O(N)
-    Space Complexity : O(N)
+    Space Complexity : O(1)
 */    
