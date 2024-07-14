@@ -1,6 +1,10 @@
 class Solution {
 public:
 
+
+    /*
+        This solution is implemented by using the extra space i.e temp array
+    */    
     void solution1(vector<int>&nums){
         int n = nums.size();
 
@@ -31,8 +35,33 @@ public:
         Time Complexity : O(N)+O(K)+O(N-K) ===> O(2N) ==> O(N)
         Space Complexity : O(N), Where N is the number of the non zero elements in an array.
     */    
+
+    // Optimied Solution : By using the two pointer approach
+
+    void solution2(vector<int>&nums){
+        int n = nums.size();
+
+        int i = 0;
+        for(int j = 0;j<n;j++){
+            if(nums[j]!=0){
+                nums[i] = nums[j];
+                i++;
+            }
+        }
+
+        // Now insert the zero at the ends
+        for(int j = i;j<n;j++){
+            nums[j] = 0;
+        }
+    }
+
+    /*
+        Analysis:
+        Time Complexity : O(N)+O(N-K) ==> O(N)
+        Space Complexity : O(1)
+    */    
     
     void moveZeroes(vector<int>& nums) {
-        solution1(nums);
+        solution2(nums);
     }
 };
