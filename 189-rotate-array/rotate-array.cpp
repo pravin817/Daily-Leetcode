@@ -30,7 +30,24 @@ public:
         Space Complexity : O(N), Where N is the number of the elements in the array
     */    
 
+    void solution2(vector<int>&nums, int k){
+        int n = nums.size();
+
+        k = k % n;
+
+        reverse(nums.begin()+n-k, nums.end());
+        reverse(nums.begin(), nums.begin()+n-k);
+        reverse(nums.begin(), nums.end());
+    }
+
+    /*
+        Analysis:
+        Time Complexity : O(2N) ==> O(N)
+        Space Complexity : O(1)
+    */
+
+
     void rotate(vector<int>& nums, int k) {
-        solution1(nums, k);
+        solution2(nums, k);
     }
 };
