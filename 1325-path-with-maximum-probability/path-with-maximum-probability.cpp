@@ -39,3 +39,5 @@ public:
         return 0.0;
     }
 };
+
+// CP
