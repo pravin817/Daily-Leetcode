@@ -12,6 +12,7 @@ public:
         {
             sum += nums[i];
 
+            // for the small test cases   {5,2,1,7,10}  k = 10
             if(sum > k){
                 break;
             }
