@@ -11,11 +11,13 @@ public:
         for(int i = 0; i < length ; ++i)
         {
             sum += nums[i];
+
+            if(sum > k){
+                break;
+            }
         }
 
-        while(sum < k){
-            k -= sum;
-        }
+        k = k % sum;
 
         for(int i = 0; i < length ; ++i)
         {
