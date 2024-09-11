@@ -20,37 +20,70 @@ public:
         return GCD(b, a%b);    
     }
 
-    ListNode* insertGreatestCommonDivisors(ListNode* head) {
-        
-        // Check if the linkedList is empty or contains one element
+
+    // Simple simulation solution by using the iterative method
+    ListNode* solution1(ListNode* head)
+    {
+        // Check if the Linked List is empty or contains a node
         if(head == nullptr || head->next == nullptr)
             return head;
 
-        // Traverse the linkedList and do simulation as mentioned in the problem statement
-        ListNode *curr = head;
+        ListNode* curr = head;
 
-        while(curr != nullptr && curr->next != nullptr)
+        while(curr->next != nullptr)
         {
-            //  1. Get the first number from the linkedList
-            int num1 = curr->val;
+            // 1. Find the GCD
+            int firstNumber = curr->val;
+            int secondNumber = curr->next->val;
 
-            // 2. Get the second number from the linkedList
-            int num2 = curr->next->val;
+            int number = GCD(firstNumber, secondNumber);
 
-            // 3. Find the GCD
-            int num = GCD(num1,num2);
+            // 2. Create the node
+            ListNode *newNode = new ListNode(number);
 
-            // 4. Create the Node
-            ListNode *newNode = new ListNode(num);
-
-            // 5. Change the linkage of links
+            // 3. Make the changes in the linkedList links
             newNode->next = curr->next;
-
             curr->next = newNode;
-
-            // Move curr
             curr = newNode->next;
-        }
+        }    
+
         return head;
+    }
+
+    /*
+        Analysis:
+        Time Complexity : O(N)
+        Space Complexity : O(1)
+    */    
+
+    // Same solution by using the recursive approach
+    ListNode* solution2(ListNode* head)
+    {
+        // Base case
+        if(head == nullptr || head->next == nullptr)
+            return head;
+
+        //  Recursive call
+        ListNode* temp = solution2(head->next);
+
+        // Small calculations
+        // Create the GCD Node
+        ListNode* newNode = new ListNode(__gcd(head->val, head->next->val));
+
+        newNode->next = temp;
+
+        head->next = newNode;
+
+        return head;
+    }
+
+    /*
+        Analysis:
+        Time Complexity : O(N)
+        Space Complexity : O(1)  ----> With considering the stack space
+    */    
+
+    ListNode* insertGreatestCommonDivisors(ListNode* head) {
+        return solution2(head);
     }
 };
