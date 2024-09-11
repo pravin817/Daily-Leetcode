@@ -23,7 +23,7 @@ public:
 
     /*
         Analysis:
-        Time Complexity : O(logN)
+        Time Complexity : O(d)   ---> where d is the number of the set bits in number
         Space Complexity : O(1)
     */    
 };
