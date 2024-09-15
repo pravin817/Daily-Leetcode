@@ -174,7 +174,7 @@ public:
     /*
         Analysis:
         Time Complexity : O(N)
-        Space Complexity : O(N)
+        Space Complexity : O(N)  -> 2^5 possible choices --->O(1)
     */    
 
     int findTheLongestSubstring(string s) {
