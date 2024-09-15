@@ -124,7 +124,60 @@ public:
         Space Complexity : O(N)
     */    
 
+
+
+    int solution3(string s)
+    {
+        map<int,int>mp;            // String (state -> index)
+        int mask = 0;                 // 00000
+        int length = s.size();
+        int result = 0;
+
+        // Initial state
+        mp[mask] = -1;
+
+        for(int i = 0; i < length ; ++i)
+        {
+            if(s[i] == 'a')
+            {
+                 mask = mask ^ (1 << 0);             
+            }
+            else if(s[i] == 'e')
+            {
+                mask = mask ^ (1 << 1);             
+            }
+            else if(s[i] == 'i')
+            {
+                mask = mask ^ (1 << 2); 
+            }
+            else if(s[i] == 'o')
+            {
+                mask = mask ^ (1 << 3); 
+            }
+            else if(s[i] == 'u')
+            {
+                mask = mask ^ (1 << 4); 
+            }
+
+            // Now find in the map
+            if(mp.find(mask)!=mp.end())
+            {
+                result = max(result, i - mp[mask]);
+            }
+            else
+            {
+                mp[mask] = i;
+            }
+        }
+        return result;
+    }
+    /*
+        Analysis:
+        Time Complexity : O(N)
+        Space Complexity : O(N)
+    */    
+
     int findTheLongestSubstring(string s) {
-        return solution2(s);
+        return solution3(s);
     }
 };
