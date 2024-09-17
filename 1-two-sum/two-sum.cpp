@@ -1,18 +1,25 @@
 class Solution {
-    private:
+public:
 
-    void solution1(vector<int>& nums, int target,vector<int>&ans){
-        int n = nums.size();
+    vector<int> solution1(vector<int>&nums, int target)
+    {
+        vector<int>result;
+        int length = nums.size();
 
-        for(int i = 0;i<n;i++){
-            for(int j = i+1;j<n;j++){
-                if(nums[i]+nums[j] == target){
-                    ans.push_back(i);
-                    ans.push_back(j);
-                    return;
+        for(int i = 0; i < length ; ++i)
+        {
+            for(int j = i+1; j < length ; ++j)
+            {
+                if(nums[i] + nums[j] == target)
+                {
+                    result.push_back(i);
+                    result.push_back(j);
+                    break;
                 }
             }
         }
+
+        return result;
     }
 
     /*
@@ -21,39 +28,7 @@ class Solution {
         Space Complexity : O(1)
     */    
 
-    vector<int> solution2(vector<int> nums, int target){
-        int n = nums.size();
-
-        map<int,int>mp;
-
-        for(int i = 0;i<n;i++){
-            int remaining = target - nums[i];
-
-            // check if the remaining element present in the map
-            if(mp.find(remaining)!=mp.end()){
-                return {mp[remaining],i};
-            }else{  // if not present then insert it in map
-                    mp[nums[i]] = i;
-            }
-        }
-
-        return {};
-    }
-
-    /*
-        Analysis:
-        Time Complexity : O(n)
-        // Space Complexity : O(n)
-    */    
-
-public:
     vector<int> twoSum(vector<int>& nums, int target) {
-        
-        // Brute force
-        // vector<int>ans;
-        // solution1(nums,target,ans);
-        // return ans;
-
-        return solution2(nums,target);
+        return solution1(nums,target);
     }
 };
