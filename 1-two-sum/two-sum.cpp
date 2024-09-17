@@ -1,10 +1,11 @@
 class Solution {
 public:
 
-    // Check for the each elements in the array
-    vector<int> solution1(vector<int>&nums, int target)
+    // Brute Force solution : Check each pair of elements in the array
+    // to see if their sum equals the target value.
+    std::vector<int> solution1(std::vector<int>&nums, int target)
     {
-        vector<int>result;
+        std::vector<int>result;
         int length = nums.size();
 
         for(int i = 0; i < length ; ++i)
@@ -29,26 +30,23 @@ public:
         Space Complexity : O(1)
     */    
 
-    // As the each input has exactly one solution, we can store the elements in map along with their index and find in the map if found then we will return the answer.
-
-    vector<int> solution2(vector<int>&nums, int target)
+    // Optimized solution using a hash map:
+    // Store elements in a map along with their indices, and for each new element, check if its remaining (target - element) exists in the map.
+    std::vector<int> solution2(std::vector<int>&nums, int target)
     {
         int length = nums.size();
         // value -> idx
-        std::map<int,int>mp;
-        vector<int>result;
-
-        // put the first element
-        mp[nums[0]] = 0;
+        std::unordered_map<int,int>mp;
+        std::vector<int>result;
 
         // now traverse the all elements from the vector
-        for(int i = 1; i<length; ++i)
+        for(int i = 0; i<length; ++i)
         {
-            int valueToBeFind = target - nums[i];
-            if(mp.find(valueToBeFind)!=mp.end())
+            int remaining = target - nums[i];
+            if(mp.find(remaining)!=mp.end())
             {
                 // If the pair is found then 
-                result.push_back(mp[valueToBeFind]);
+                result.push_back(mp[remaining]);
                 result.push_back(i);
                 break;
             }
@@ -62,7 +60,7 @@ public:
 
     /*
         Analysis:
-        Time Complexity : O(NlogN)
+        Time Complexity : O(N)
         Space Complexity : O(N)
     */    
 
