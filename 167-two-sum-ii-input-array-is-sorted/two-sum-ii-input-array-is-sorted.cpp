@@ -60,7 +60,39 @@ public:
         Space Complexity : O(N)
     */    
 
+    // Expected Solution : As the array is sorted in increasing order we can think of two pointer approach.
+    vector<int> solution3(vector<int>&nums, int target)
+    {
+        int low = 0;
+        int high = nums.size()-1;
+
+        while(low<high)
+        {
+            int sum = nums[low] + nums[high];
+
+            if(sum == target)
+            {
+                return {low+1, high+1};
+            }
+            else if(sum < target)
+            {
+                ++low;
+            }
+            else
+            {
+                --high;
+            }
+        }
+
+        return {};
+    }
+    /*
+        Analysis:
+        Time Complexity : O(N)
+        Space Complexity : O(1)
+    */    
+
     vector<int> twoSum(vector<int>& numbers, int target) {
-        return solution2(numbers,target);
+        return solution3(numbers,target);
     }
 };
