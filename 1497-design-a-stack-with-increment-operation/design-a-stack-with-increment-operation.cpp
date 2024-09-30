@@ -1,8 +1,9 @@
 class CustomStack {
 
 private:
-    std::vector<int> stack;
-    int maxSize;
+    std::vector<int>st;
+    std::vector<int>increments;
+    int maxSize;    
 
 public:
     CustomStack(int maxSize) {
@@ -10,35 +11,42 @@ public:
     }
     
     void push(int x) {
-        if(stack.size() < maxSize)
+        if(st.size() < maxSize)
         {
-            stack.push_back(x);
+            st.push_back(x);
+            increments.push_back(0);
         }
     }
-
     // O(1)
     
     int pop() {
-        if(stack.size() == 0)
+        if(st.size() == 0)
             return -1;
 
-        int element = stack.back();
-        stack.pop_back();
-        return element;    
-    }
+        int idx = st.size()-1;
 
+        // Lazy propogation
+        if(idx > 0)
+            increments[idx-1] += increments[idx];
+
+        int value = st[idx] + increments[idx];
+
+        // Remove from the stack and increments
+        st.pop_back();
+        increments.pop_back();
+
+        return value;
+    }
     // O(1)
     
     void increment(int k, int val) {
-        int limit = min(k, (int)stack.size());
+        
+        int limit = min(k, (int)st.size()) - 1;
 
-        for(int i = 0; i < limit; ++i)
-        {
-            stack[i] += val;
-        }
+        if(limit >= 0)
+            increments[limit] += val;
     }
-
-    // O(N)
+    // O(1)
 };
 
 /**
