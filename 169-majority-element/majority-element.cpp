@@ -23,7 +23,35 @@ public:
         Space Complexity : O(logN)   ---> Internal space for the intro sort
     */    
 
+    // A Better solution would be like the used the map to store the frequency and check if the frequncy is greater than n/2 the return that element and there is always the majority element
+
+    int solution2(const std::vector<int> &nums)
+    {
+        int n = nums.size();
+
+        std::map<int, int>mp;
+
+        // 1. insert the element in the map and check if the element is the majority lement or not
+        for(int i = 0; i < n; ++i)
+        {
+            mp[nums[i]]++;
+
+            if(mp[nums[i]] > n / 2)
+                return nums[i];
+        }
+
+        return -1;
+    }
+
+    /*
+        Analysis:
+        Time Complexity : O(NlogK)  ----> Where N is the size of the vector and k is the number of the unique elements in the map
+        Space Complexity : O(N)
+    */    
+
+
+        
     int majorityElement(vector<int>& nums) {
-        return solution1(nums);
+        return solution2(nums);
     }
 };
