@@ -49,9 +49,57 @@ public:
         Space Complexity : O(N)
     */    
 
+    // Optimal Solution by using the Boyer moore algorithms
+    int solution3(const std::vector<int> &nums)
+    {
+        int n = nums.size();
+        int candidate = 0;
+        int count = 0;
 
-        
+        // 1. Assumption : find the element that may be majority element
+        for(int i = 0; i < n; ++i)
+        {
+            int currentElement = nums[i];
+
+            if(count == 0)
+            {
+                count = 1;
+                candidate = currentElement;
+            }
+            else if(currentElement == candidate)
+            {
+                ++count;
+            }
+            else
+            {
+                --count;
+            }
+        }
+
+        // return candiate; // In this case the answer will the candiate because it is assuered that there is always the majority of the element is there.
+
+        // 2. Validation : Check if the candiate is the majority of the element
+        count = 0;
+        for(int i = 0; i < n; ++i)
+        {
+            if(nums[i] == candidate)
+                ++count;
+
+            if(count > n / 2)
+                return candidate;    
+        }
+
+        return -1; // If the no majority element is not found // Here there is no need 
+    } 
+
+    /*
+        Analysis:
+        Time Complexity : O(N)
+        Space complexity : O(1)
+    */
+
+
     int majorityElement(vector<int>& nums) {
-        return solution2(nums);
+        return solution3(nums);
     }
 };
