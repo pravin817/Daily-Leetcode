@@ -86,6 +86,11 @@ public:
         // 3. Build the linkedList and return the head
         return BuildLinkedList(linkedListToVec);
     }
+    /*
+        Analysis:
+        Time Complexity : O(N)  ----> Where N is the number of the nodes in the linkedList
+        Space Complexity : O(N)  ---> Where N is the number of the node in the linkedList
+    */    
 
     ListNode* reverseList(ListNode* head) {
         return solution1(head);
