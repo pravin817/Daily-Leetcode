@@ -37,10 +37,11 @@ public:
 
         for(int i = 0 ; i < n; ++i){
             // found
-            if(s.find(2*nums[i])!=s.end()){
-                isExist = true;
-                break;
-            }else if ((nums[i] % 2 == 0) && (s.find(nums[i]/2)!=s.end())){
+            if(
+                   (s.find(2*nums[i])!=s.end()) 
+                   || 
+                   ((nums[i] % 2 == 0) && (s.find(nums[i]/2)!=s.end()))
+                ){
                 isExist = true;
                 break;
             }else{
