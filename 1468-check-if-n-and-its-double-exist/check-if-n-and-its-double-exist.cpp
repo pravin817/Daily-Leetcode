@@ -28,7 +28,36 @@ public:
     */    
 
 
+    // Better solution
+    bool solution2(const std::vector<int> &nums){
+        bool isExist = false;
+        int n = nums.size();
+
+        std::set<int>s;
+
+        for(int i = 0 ; i < n; ++i){
+            // found
+            if(s.find(2*nums[i])!=s.end()){
+                isExist = true;
+                break;
+            }else if ((nums[i] % 2 == 0) && (s.find(nums[i]/2)!=s.end())){
+                isExist = true;
+                break;
+            }else{
+                s.insert(nums[i]);
+            }
+        }
+
+        return isExist;
+    }
+
+    /*
+        Analysis:
+        Time Complexity : O(N)
+        Space Complexity : O(N)
+    */    
+
     bool checkIfExist(vector<int>& arr) {
-        return solution1(arr);
+        return solution2(arr);
     }
 };
