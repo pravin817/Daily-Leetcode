@@ -12,8 +12,6 @@ public:
         while( i < len){
             if((j < n) && (i == spaces[j])){
                 result += " ";
-                result += s[i];
-                ++i;
                 ++j;
             }else{
                 result += s[i];
