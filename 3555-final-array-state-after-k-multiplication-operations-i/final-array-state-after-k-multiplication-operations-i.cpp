@@ -1,44 +1,36 @@
 class Solution {
 public:
 
-    int indexOfMinimumElement(vector<int>&nums)
-    {
-        int index = 0;
-        int mini = nums[0];
-        int numsLength = nums.size();
+    // Function that returns the index of the minimum element 
+    int getMinimumIndex(const std::vector<int>&nums){
+        int miniValue = INT_MAX;
+        int miniIndex = INT_MAX;
+        int n = nums.size();
 
-        for(int i = 0; i < numsLength; ++i)
-        {
-            if(mini > nums[i])
-            {
-                mini = nums[i];
-                index = i;
+        for(int i = 0; i < n; ++i){
+            if(nums[i] < miniValue){
+                miniValue = nums[i];
+                miniIndex = i;
             }
         }
-        return index;
+        return miniIndex;
     }
 
     vector<int> getFinalState(vector<int>& nums, int k, int multiplier) {
         
-        while(k)
-        {
-            int miniElementIndex = indexOfMinimumElement(nums);
+        while(k--){
 
-            // Update the value at the minimum index
-            int previousValue = nums[miniElementIndex];
-            int updatedValue = multiplier * previousValue;
+            int index = getMinimumIndex(nums);
 
-            nums[miniElementIndex] = updatedValue;
-
-            --k;
+            int oldValue = nums[index];
+            int newValue = oldValue * multiplier;
+            nums[index] = newValue;
         }
-
-        return nums;    
+        return nums;
     }
+    /*
+        Analysis:
+        Time Complexity : O(klogn)
+        Space Complexity : O(1)
+    */    
 };
-
-/*
-    Analysis:
-    Time Complexity : (KlogN)  ----> Where K is the number of the operations, N is the number of the elements in nums.
-    Space Complexity : O(1)
-*/    
