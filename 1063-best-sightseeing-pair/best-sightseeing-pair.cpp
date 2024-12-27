@@ -21,7 +21,6 @@ public:
     // Note the above solution gives the TLE
 
     // We can arrage the formula ===> (nums[i] + i) + (nums[j] - j)
-
     int solution2(const std::vector<int>&values){
         int maxScore = INT_MIN;
         int n = values.size();
@@ -45,7 +44,6 @@ public:
         Space Complexity : O(N)
     */    
 
-
     // Optimal Solution we don't need the vector 
     int solution3(const std::vector<int> &nums){
         int n = nums.size();
@@ -68,7 +66,35 @@ public:
         Space Complexity : O(1)
     */    
 
+
+    // Solution using the max Heap
+    int solution4(const std::vector<int> &nums){
+        int maxScore = 0;
+        int n = nums.size();
+
+        priority_queue<int>pq;
+        // nums[i] + i
+        pq.push(nums[0] + 0);
+
+        for(int j = 1; j < n; ++j){
+            int value = nums[j] - j;
+
+            maxScore = max(maxScore, value + pq.top());
+
+            // Insert the new value into the max heap
+            pq.push(nums[j] + j);
+        }
+
+        return maxScore;
+    }
+
+    /*
+        Analysis:
+        Time Complexity : O(NlogN)
+        Space Complexity : O(N)
+    */
+
     int maxScoreSightseeingPair(vector<int>& values) {
-        return solution3(values);
+        return solution4(values);
     }
 };
