@@ -28,7 +28,7 @@ public:
         std::vector<int>vec(n,0);
         vec[0] = values[0];
 
-        // Values[i] + i
+        // Vec[i] --> store the maximum values of values[i] + i till index i in values wala array
         for(int i = 1; i < n; ++i){
             vec[i] = max(values[i] + i , vec[i-1]);
         }
@@ -45,7 +45,30 @@ public:
         Space Complexity : O(N)
     */    
 
+
+    // Optimal Solution we don't need the vector 
+    int solution3(const std::vector<int> &nums){
+        int n = nums.size();
+
+        int maxScore = 0;
+
+        int currentMax = nums[0] + 0;
+
+        for(int i = 1; i < n; ++i){
+            currentMax = max(currentMax, nums[i-1] + i-1);
+            maxScore = max(maxScore , currentMax + nums[i] - i);
+        }
+
+        return maxScore;
+    }
+
+    /*
+        Analysis:
+        Time Complexity : O(N)
+        Space Complexity : O(1)
+    */    
+
     int maxScoreSightseeingPair(vector<int>& values) {
-        return solution2(values);
+        return solution3(values);
     }
 };
