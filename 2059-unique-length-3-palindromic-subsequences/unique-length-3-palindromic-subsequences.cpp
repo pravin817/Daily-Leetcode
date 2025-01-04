@@ -30,14 +30,14 @@ public:
     int solution2(std::string str){
         int count = 0;
 
-        std::set<char>uniqueChar;
+        std::unordered_set<char>letters;
        
         for(int i = 0; i < str.size(); ++i){  // O(n)
-            uniqueChar.insert(str[i]);
+            letters.insert(str[i]);
         }
 
         // For Each character find the start and end index
-        for(auto currentChar : uniqueChar){  // O(n)
+        for(char letter : letters){  // O(26)
 
             int startIndex = -1;
             int endIndex = -1;
@@ -45,14 +45,14 @@ public:
             for(int i = 0; i < str.size(); ++i){  // O(n)
 
                 // Start Index
-                if(str[i] == currentChar && startIndex == -1){
-                    startIndex = i;
-                }
+                if(str[i] == letter) {
+                    if( startIndex == -1){
+                        startIndex = i;
+                    }
 
-                // End Index
-                if(str[i] == currentChar){
+                    // End Index
                     endIndex = i;
-                }
+                } 
             }
 
             if(startIndex == endIndex){
@@ -61,8 +61,8 @@ public:
 
             std::set<char>uniqueCharInRange;
 
-            for(int i = startIndex + 1; i < endIndex; ++i){  // O(n)
-                uniqueCharInRange.insert(str[i]);
+            for(int middle = startIndex + 1; middle < endIndex; ++middle){  // O(n)
+                uniqueCharInRange.insert(str[middle]);
             }
 
             count += uniqueCharInRange.size();
@@ -73,11 +73,57 @@ public:
 
     /*
         Analysis:
-        Time Complexity : O(N^2)
-        Space Complexity : O(N)
+        Time Complexity  : O(26*N)   ===> (N)
+        Space Complexity : O(26)     ===> O(1)
     */    
 
+    // Simplified version of the above code we can precalculate the starting and the end index for the each character
+
+    int solution3(std::string str){
+        int count = 0;
+        
+        std::vector<std::pair<int,int>> indices(26, {-1,-1});  // O(26) ===> O(1)
+
+        // Precomputation of the starting and the ending index
+        for(int i = 0; i < str.size(); ++i){  // O(N)
+            char ch = str[i];
+            int index = ch - 'a';
+
+            if(indices[index].first == -1){
+                indices[index].first = i;
+            }
+
+            indices[index].second = i;
+        }
+
+        // For each character
+        for(int i = 0; i < indices.size(); ++i){     // O(26)    ===> O(1)
+            int startIndex = indices[i].first;
+            int endIndex = indices[i].second;
+
+            if(startIndex == endIndex){
+                continue;
+            }
+
+            // Calculate the palindromic count
+            unordered_set<char> uniqueChar;
+
+            for(int middle = startIndex + 1; middle < endIndex; ++middle){  // O(N)
+                uniqueChar.insert(str[middle]);
+            }
+
+            count += uniqueChar.size();
+        }
+
+        return count;
+    }
+    /*
+        Analysis:
+        Time Complexity  : O(N)
+        Space Complexity : O(1)
+    */
+
     int countPalindromicSubsequence(string s) {
-        return solution2(s);
+        return solution3(s);
     }
 };
