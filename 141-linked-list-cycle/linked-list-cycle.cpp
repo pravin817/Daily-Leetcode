@@ -9,34 +9,34 @@
 class Solution {
 public:
 
-    // solution using the Hash Table
-    bool hasCycle(ListNode *head) {
-        unordered_set<ListNode*>visited_nodes;
+    // Brute force solution : Store the Node in set and check if we get the node again then there is a loop in the LinkedList
 
-        ListNode* currentNode = head;
-
-        // Traverse the linked List
-        while(currentNode != nullptr){
-
-            // check if the currentNode is found in the hash Table
-            if(visited_nodes.find(currentNode)!=visited_nodes.end()){
-                return true;
-            }
-
-            // if the currentNode is not in the hash Table then insert it into the hash table
-            visited_nodes.insert(currentNode);
-
-            //move to the next node
-            currentNode = currentNode->next;
+    bool solution1(ListNode* head){
+        if(head == NULL || head->next == NULL){
+            return false;
         }
 
-        return false; // if we get null
+        unordered_set<ListNode*> s;
+        ListNode* curr = head;
+
+        while(curr != NULL){
+            if(s.find(curr) != s.end()){
+                return true;
+            }
+            s.insert(curr);
+            curr = curr->next;
+        }
+
+        return false;
+    }
+
+    /*
+        Analysis:
+        Time Complexity : O(N)
+        Space Complexity : O(N)
+    */
+
+    bool hasCycle(ListNode *head) {
+        return solution1(head);
     }
 };
-
-
-/*
-    Analysis:
-    Time Complexity : O(n)
-    Space Complexity : O(n)
-*/    
