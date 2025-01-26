@@ -36,7 +36,40 @@ public:
         Space Complexity : O(N)
     */
 
+    // We can optimied the above solution by using the slow and fast pointer
+
+    bool solution2(ListNode* head){
+        if(head == NULL || head->next == NULL){
+            return false;
+        }
+
+        ListNode* slow = head;
+        ListNode* fast = head;
+
+        while(fast != NULL && fast->next != NULL){
+
+            // Move the slow pointer by one place
+            slow = slow->next;
+
+            // Move the fast pointer by two place
+            fast = fast->next->next;
+
+            // Check if the slow and fast pointer pointing to the same node
+            if(slow == fast){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /*
+        Anlysis:
+        Time Complexity : O(N)
+        Space Complexity : O(1)
+    */
+
     bool hasCycle(ListNode *head) {
-        return solution1(head);
+        return solution2(head);
     }
 };
