@@ -36,11 +36,41 @@ public class Solution {
 
     /*
         Analysis:
-        Time Complexity : O(N)
+        Time Complexity  : O(N)
         Space Complexity : O(N)
     */
 
+    // Optimization : We can optimied the above solution by using the slow and fast pointer approach
+
+    private boolean hasCycle2(ListNode head){
+        if(head == null || head.next == null) {
+            return false;
+        }
+
+
+        ListNode slow = head;
+        ListNode fast = head;
+
+        while(fast != null && fast.next != null){
+
+            slow = slow.next;
+            fast = fast.next.next;
+
+            if(slow == fast){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /*
+        Analysis:
+        Time Complexity  : O(N)
+        Space Complexity : O(1)
+    */
+
     public boolean hasCycle(ListNode head) {
-        return hasCycle1(head);
+        return hasCycle2(head);
     }
 }
