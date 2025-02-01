@@ -42,7 +42,27 @@ public:
         Space Complexity : O(1)
     */
 
+    /*
+        Solution 3 : By using the & operator
+            Number & 1 = 1 (Odd Number)
+            Number & 1 = 0 (Even Number)
+    */
+    bool solution3(const std::vector<int>&nums) {
+        for(int index = 0; index < nums.size(); ++index) {
+            if((nums[index] & 1) ^ (nums[index+1]) == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /*
+        Analysis:
+        Time Complexity  : O(N)
+        Space Complexity : O(1)
+    */
+
     bool isArraySpecial(vector<int>& nums) {
-        return solution1(nums);
+        return solution2(nums);
     }
 };
