@@ -48,8 +48,8 @@ public:
             Number & 1 = 0 (Even Number)
     */
     bool solution3(const std::vector<int>&nums) {
-        for(int index = 0; index < nums.size(); ++index) {
-            if((nums[index] & 1) ^ (nums[index+1]) == 0) {
+        for(int index = 0; index < nums.size() -1 ; ++index) {
+            if((nums[index] & 1) ^ (nums[index+1] & 1) == 0) {
                 return false;
             }
         }
@@ -63,6 +63,6 @@ public:
     */
 
     bool isArraySpecial(vector<int>& nums) {
-        return solution2(nums);
+        return solution3(nums);
     }
 };
