@@ -44,7 +44,34 @@ public:
         Space Complexity : O(N)
     */
 
+    // Solution - 3 : As the array is sorted we can think about the two pointer approach
+
+    std::vector<int> solution3(const std::vector<int>&nums, int target) {
+        int low = 0;
+        int high = nums.size()-1;
+
+        while(low < high) {
+            
+            int twoSum = nums[low] + nums[high];
+
+            if(twoSum == target) {
+                return {low+1, high+1};
+            } else if (twoSum > target) {
+                --high;
+            } else {
+                ++low;
+            }
+        }
+        return {};
+    }
+
+    /*
+        Analysis:
+        Time Complexity  : O(N)
+        Space Complexity : O(1)
+    */
+
     vector<int> twoSum(vector<int>& numbers, int target) {
-        return solution2(numbers, target);
+        return solution3(numbers, target);
     }
 };
