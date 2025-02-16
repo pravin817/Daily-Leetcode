@@ -22,7 +22,30 @@ public:
         Space Complexity : O(1)
     */
 
+    // We can optimised the above solution by using the unordered_map
+    std::vector<int> findTwoSum2(const std::vector<int>&nums, int target) {
+        std::unordered_map<int,int>indexMap;
+
+        for(int i = 0; i < nums.size(); ++i) {
+            int complement = target - nums[i];
+
+            if(indexMap.find(complement)!= indexMap.end()){
+                return {indexMap[complement], i};
+            } 
+
+            indexMap[nums[i]] = i;
+        }
+
+        return {};
+    }
+
+    /*
+        Analysis:
+        Time Complexity : O(N)
+        Space Complexity : O(N)
+    */
+
     vector<int> twoSum(vector<int>& nums, int target) {
-        return findTwoSum(nums, target);
+        return findTwoSum2(nums, target);
     }
 };
