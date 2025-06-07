@@ -18,8 +18,32 @@ public:
             Time Complexity : O(n^2)
             Space Complexity : O(1)
     */
+
+
+    // Solution - 2 : By using the unordered map
+    std::vector<int> optimisedSolution(const std::vector<int>&nums, int target) {
+        std::unordered_map<int, int> elementWithIndex;
+
+        for (int iElement = 0; iElement < nums.size(); ++iElement) {
+            int remaining = target - nums[iElement];
+
+            if (elementWithIndex.find(remaining) != elementWithIndex.end()) {
+                return {elementWithIndex[remaining], iElement};
+            }
+
+            elementWithIndex[nums[iElement]] = iElement;
+        }
+
+        return {-1,-1};
+    }
+
+    /*
+        Analysis:
+        Time Complexity : O(n)
+        Space Complexity : O(n)
+    */
     
     vector<int> twoSum(vector<int>& nums, int target) {
-        return bruteForceSolution(nums, target);
+        return optimisedSolution(nums, target);
     }
 };
