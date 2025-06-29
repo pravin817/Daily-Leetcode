@@ -36,7 +36,7 @@ class Solution {
 
     // Function used to calculate the running sum of an array with modifying the original array - Not recommended
 
-    private int[] calculateRunningSum2(int[] nums) {
+    private int[] calculateRunningSumInPlace(int[] nums) {
         if (nums == null || nums.length == 0) {
             return new int[0];
         }
@@ -55,6 +55,6 @@ class Solution {
     */
 
     public int[] runningSum(int[] nums) {
-        return calculateRunningSum2(nums);
+        return calculateRunningSumInPlace(nums);
     }
 }
