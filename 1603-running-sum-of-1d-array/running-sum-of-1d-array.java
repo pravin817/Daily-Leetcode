@@ -34,7 +34,27 @@ class Solution {
         Space Complexity : O(n)
     */
 
+    // Function used to calculate the running sum of an array with modifying the original array - Not recommended
+
+    private int[] calculateRunningSum2(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return new int[0];
+        }
+
+        for(int ithElement = 1 ; ithElement < nums.length; ithElement++) {
+            nums[ithElement] += nums[ithElement-1];
+        }
+
+        return nums;
+    }
+
+    /*
+        Analysis:
+        Time Complexity  : O(n)
+        Space Complexity : O(1) --> We directly modified the input array
+    */
+
     public int[] runningSum(int[] nums) {
-        return calculateRunningSum(nums);
+        return calculateRunningSum2(nums);
     }
 }
