@@ -71,7 +71,18 @@ class Solution {
         Space Complexity : O(k)
     */
 
+    // By simple observations
+    private char getKthCharacterOptimisedVersion3(int k) {
+        return (char) ('a' + Integer.bitCount(k-1));
+    }
+
+    /*
+        Analysis:
+        Time Complexity  : O(1)
+        Space Complexity : O(1)
+    */
+
     public char kthCharacter(int k) {
-        return getKthCharacterOptimisedVersion2(k);
+        return getKthCharacterOptimisedVersion3(k);
     }
 }
