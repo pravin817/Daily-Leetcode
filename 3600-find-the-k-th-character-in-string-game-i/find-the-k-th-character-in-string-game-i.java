@@ -52,7 +52,26 @@ class Solution {
         Space Complexity : O(k)
     */
 
+    // We can solve this without using the nextWord string
+    private char getKthCharacterOptimisedVersion2(int k) {
+        StringBuilder originalWord = new StringBuilder("a");
+
+        while (originalWord.length() < k) {
+            int size = originalWord.length();
+            for (int i = 0; i < size; i++) {
+                originalWord.append((char)((originalWord.charAt(i) - 'a' + 1 ) % 26 + 'a'));
+            }
+        }
+        return originalWord.charAt(k-1);
+    }
+
+    /*
+        Analysis:
+        Time Complexity  : O(k)
+        Space Complexity : O(k)
+    */
+
     public char kthCharacter(int k) {
-        return getKthCharacterOptimisedVersion1(k);
+        return getKthCharacterOptimisedVersion2(k);
     }
 }
