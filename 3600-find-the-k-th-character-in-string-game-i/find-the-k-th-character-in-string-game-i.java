@@ -30,7 +30,29 @@ class Solution {
         Space COmplexity : O(k)
     */
 
+    // Instead of using the string we have optimised it using the stringBuilder
+    private char getKthCharacterOptimisedVersion1(int k) {
+        StringBuilder originalWord = new StringBuilder("a");
+        StringBuilder nextWord = new StringBuilder();
+
+        while (originalWord.length() < k) {
+            nextWord.setLength(0);
+
+            for (int i = 0; i < originalWord.length(); i++) {
+                nextWord.append((char)((originalWord.charAt(i) - 'a' + 1 ) % 26 + 'a'));
+            }
+            originalWord.append(nextWord);
+        }
+        return originalWord.charAt(k-1);
+    }
+
+    /*
+        Analysis:
+        Time Complexity  : O(k)
+        Space Complexity : O(k)
+    */
+
     public char kthCharacter(int k) {
-        return getKthCharacter(k);
+        return getKthCharacterOptimisedVersion1(k);
     }
 }
