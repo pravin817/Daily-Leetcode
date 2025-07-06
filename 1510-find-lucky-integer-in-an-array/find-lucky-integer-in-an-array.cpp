@@ -1,42 +1,22 @@
 class Solution {
 public:
-
-    // Function used to find the lucky number
-    int findLuckyNumber(const std::vector<int>&nums) {
-        int result = -1;
-        std::unordered_map<int,int>frequency;
-
-        for(int i = 0; i < nums.size(); i++) {
-            frequency[nums[i]]++;
-        }
-
-        // Traverse the map and find the maximum value which could be lucky number
-        for(const auto&entry:frequency) {
-            if(entry.first == entry.second) {
-                // std::cout << m.first << " " << m.second << std::endl;
-                result = std::max(result, entry.first);
-            }
-        }
-
-        return result;
-    }
-
     /*
-        Analysis:
-        Time Complexity  : O(n)
-        Space Complexity : O(n)
+        Function    : findLuckyNumber1
+        Description : Function used to find the lucky number based on the given problem statement.
+        Author      : Pravin Mhaske
+        Date        : 05/06/2025
     */
+    int findLuckyNumber1(const std::vector<int>& nums) {
+        int frequency[501] = {0};
 
-    // We can use the array / hash map as the size of the input is 500 
-    int findLuckyNumber2(const std::vector<int>&nums) {
-        int store[501] = {};
-
-        for(auto n: nums) {
-            ++store[n];
+        // Update the frequency of the each number
+        for(int num: nums) {
+            ++frequency[num];
         }
 
-        for(auto n = nums.size(); n > 0; --n) {
-            if (n == store[n]) {
+        // Now check the number whose frequency is equal it itself and it is maximum.
+        for( int n = nums.size(); n>0; --n) {
+            if(frequency[n] == n) {
                 return n;
             }
         }
@@ -51,6 +31,6 @@ public:
     */
 
     int findLucky(vector<int>& arr) {
-        return findLuckyNumber2(arr);
+        return findLuckyNumber1(arr);
     }
 };
