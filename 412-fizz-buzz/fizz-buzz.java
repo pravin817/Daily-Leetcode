@@ -11,11 +11,15 @@ class Solution {
         List<String> result = new LinkedList<String>();
 
         for (int i = 1; i <= n; ++i) {
-            if (i % 3 == 0 && i % 5 == 0) {
+
+            boolean isDivisibleBy3 = i % 3 == 0;
+            boolean isDivisibleBy5 = i % 5 == 0;
+
+            if (isDivisibleBy3 && isDivisibleBy5) {
                 result.add("FizzBuzz");
-            } else if (i % 3 == 0) {
+            } else if (isDivisibleBy3) {
                 result.add("Fizz");
-            } else if (i % 5 == 0) {
+            } else if (isDivisibleBy5) {
                 result.add("Buzz");
             } else {
                 result.add(String.valueOf(i));
@@ -28,7 +32,7 @@ class Solution {
     /*
         Analysis:
         Time Complexity  : O(n)
-        Space Complexity : O(n)
+        Space Complexity : O(1)
     */
 
     public List<String> fizzBuzz(int n) {
