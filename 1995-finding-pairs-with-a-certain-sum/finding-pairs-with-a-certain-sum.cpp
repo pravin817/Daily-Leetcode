@@ -2,7 +2,7 @@ class FindSumPairs {
 private:
     std::vector<int> nums1;
     std::vector<int> nums2;
-    std::map<int, int> frequency;
+    std::unordered_map<int, int> frequency;
 
 public:
     FindSumPairs(vector<int>& nums1, vector<int>& nums2) {
@@ -23,22 +23,33 @@ public:
             ++frequency[nums2[index]];
         }
     }
+
+    // TC : O(1)
     
     int count(int total) {
 
         int countOfPairs = 0;
 
-        for(int i = 0; i < nums1.size(); ++i) {
-            int complement = total - nums1[i];
+        for(const auto &num : nums1) {
+            int complement = total - num;
 
-            if (frequency.find(complement) != frequency.end()) {
+            if (frequency.count(complement)) {
                 countOfPairs += frequency[complement];
             }
         }
 
         return countOfPairs;
     }
+
+    // TC : O(n)
 };
+
+
+/*
+    Analysis:
+    Time Complexity  : O(n + m + q1 + q2.n)
+    Space Complexity : O(n+m)
+*/
 
 /**
  * Your FindSumPairs object will be instantiated and called as such:
