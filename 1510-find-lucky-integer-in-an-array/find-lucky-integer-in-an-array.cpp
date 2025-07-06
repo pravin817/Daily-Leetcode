@@ -63,7 +63,67 @@ public:
         Space Complexity : O(n)
     */
 
+    // Solution by modifying the input array.
+    /*
+        As we are given the 
+        
+        Constraints:
+            1 <= arr.length <= 500
+            1 <= arr[i] <= 500
+
+        Henced the lucky number is always in range [1,500].
+
+        As we know that the numbers are stored in 32 bit.
+
+        1        = 00000000 00000000  00000000 00000001
+        (number) = -----------------  -----------------
+                 = ( 16 bits )         (16 bits)
+                 = (used to store the   used to store the value
+                    count)
+
+        We will update the original input array such that it will store the count as well as value.
+
+        Now - 
+
+        How to get the value:
+
+        int value = nums[i] & 65535;
+        int idx   = value - 1;
+        count     = nums[i] + (1 << 16) // pow(2,16) or 65536
+
+    */
+
+    int findLuckyNumber3(std::vector<int>& nums) {
+        int n = nums.size();
+
+        // update the input array
+        for(int i = 0; i < n; ++i) {
+            int val = nums[i] & 65535;
+            if (val <= n) {
+                // index
+                nums[val - 1] = nums[val - 1] + (1 <<16);
+            }
+            // nums[i] = (first 16 bits count) (next 16 bit - value)
+        }
+
+        // return the lucky number
+        for(int val = n; val >= 1; --val) {
+
+            if(nums[val-1] >> 16 == val) {
+                return val;
+            }
+        }
+
+        return -1;
+    }
+
+    /*
+        Analysis:
+        Time Complexity  : O(n)
+        Space Complexity : O(1)
+    */
+
     int findLucky(vector<int>& arr) {
-        return findLuckyNumber2(arr);
+        return findLuckyNumber3(arr);
     }
 };
