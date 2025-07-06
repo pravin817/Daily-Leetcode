@@ -1,4 +1,11 @@
 class Solution {
+private:
+
+    // Function used to find the maximum of the two numbers
+    int maximum(int num1, int num2) {
+        return num1 > num2 ? num1 : num2;
+    }
+
 public:
     /*
         Function    : findLuckyNumber1
@@ -30,7 +37,33 @@ public:
         Space Complexity : O(n)
     */
 
+    // We can also used the unordered_map to store the frequecy of the each number and return the number who has the frequecy equal to the number itself which is largest integer.
+    int findLuckyNumber2(const std::vector<int>& nums) {
+        int result = -1;
+        std::unordered_map<int,int> frequency;
+
+        // Update the frequecy of the each number
+        for (const auto& num: nums) {
+            ++frequency[num];
+        }
+
+        // Now find the lucky number
+        for(const auto& entry: frequency) {
+            if (entry.first == entry.second) {
+                result = maximum(result, entry.first);
+            }
+        }
+
+        return result;
+    }
+
+    /*
+        Analysis:
+        Time Complexity  : O(n)
+        Space Complexity : O(n)
+    */
+
     int findLucky(vector<int>& arr) {
-        return findLuckyNumber1(arr);
+        return findLuckyNumber2(arr);
     }
 };
