@@ -88,7 +88,18 @@ public:
         Space Complexity : O(1)
     */
 
+    // Approach - 5 : If the number if power of 2 then ceil(log(n)) == floor(log(n))
+
+    bool isPowerOfTwo5(const int n) {
+        return n > 0 && (ceil(log2(n)) == floor(log2(n)));
+    }
+    /*
+        Analysis:
+        Time Complexity  : O(1)
+        Space Complexity : O(1)
+    */
+
     bool isPowerOfTwo(int n) {
-        return isPowerOfTwo4(n);
+        return isPowerOfTwo5(n);
     }
 };
