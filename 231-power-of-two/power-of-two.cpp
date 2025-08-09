@@ -99,7 +99,41 @@ public:
         Space Complexity : O(1)
     */
 
+    // Approach 6 : If n divides the 2 ^30 completly then the n is power of 2
+    bool isPowerOfTwo6(const int n) {
+        if (n <= 0) {
+            return false;
+        }
+
+        return (1 << 30 ) % n == 0;
+    }
+
+    /*
+        Analysis:
+        Time Complexity  : O(1)
+        Space Complexity : O(1)
+    */
+
+    // Approach : 7 - Recursion 
+    bool isPowerOfTwo7(const int n) {
+        if ( n <= 0) {
+            return false;
+        }
+
+        if (n == 1) {
+            return true;
+        }
+
+        return n%2 == 0 && isPowerOfTwo7(n/2);
+    }
+
+    /*
+        Analysis:
+        Time Complexity  : O(logn)
+        Space Complexity : O(logn)
+    */
+
     bool isPowerOfTwo(int n) {
-        return isPowerOfTwo5(n);
+        return isPowerOfTwo7(n);
     }
 };
