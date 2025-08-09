@@ -45,14 +45,18 @@ public:
             return false;
         }
 
-        int count = 0;
+        bool isSetBitFound = false;
         while (n > 0) {
-            count += (n & 1);
-            if (count > 1) {
-                return false;
+            if (n & 1) {
+                if (isSetBitFound) {
+                    return false;
+                }
+                isSetBitFound = true;
             }
+
             n = n >> 1;
         }
+
         return true;
     }
 
