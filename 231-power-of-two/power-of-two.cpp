@@ -66,7 +66,29 @@ public:
         Space Complexity : O(1)
     */
 
+    // Approach - 3 : Same as the above but using the inbuild functions
+    bool isPowerOfTwo3(int n) {
+        return n > 0 && __builtin_popcount(n) == 1;
+    }
+
+    /*
+        Analysis:
+        Time Complexity  : O(logn)
+        Space Complexity : O(1)
+    */
+
+    // Approach : 4 By using the formula : (n) & (n-1) == 0
+    bool isPowerOfTwo4(const int n) {
+        return n > 0 && (n & (n-1)) == 0; 
+    }
+
+    /*
+        Analysis:
+        Time Complexity  : O(1)
+        Space Complexity : O(1)
+    */
+
     bool isPowerOfTwo(int n) {
-        return isPowerOfTwoBetterSolution(n);
+        return isPowerOfTwo4(n);
     }
 };
