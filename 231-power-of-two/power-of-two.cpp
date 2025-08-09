@@ -26,7 +26,43 @@ public:
         Space Complexity : O(1)
     */
 
+    /*
+        Note : As we observed that any number which is power of 2 has only one set bit.
+        eg.
+
+        1 =>    0000 0001
+        2 =>    0000 0010
+        4 =>    0000 0100
+        8 =>    0000 1000
+        16 =>   0001 0000
+        32 =>   0010 0000
+        64 =>   0100 0000
+        128 =>  1000 0000
+    */
+
+    bool isPowerOfTwoBetterSolution(int n) {
+        if (n <= 0) {
+            return false;
+        }
+
+        int count = 0;
+        while (n > 0) {
+            count += (n & 1);
+            if (count > 1) {
+                return false;
+            }
+            n = n >> 1;
+        }
+        return true;
+    }
+
+    /*
+        Analysis:
+        Time Complexity  : O(logn)
+        Space Complexity : O(1)
+    */
+
     bool isPowerOfTwo(int n) {
-        return isPowerOfTwoBruteForce(n);
+        return isPowerOfTwoBetterSolution(n);
     }
 };
