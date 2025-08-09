@@ -134,6 +134,6 @@ public:
     */
 
     bool isPowerOfTwo(int n) {
-        return isPowerOfTwo6(n);
+        return isPowerOfTwo7(n);
     }
 };
