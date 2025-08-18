@@ -9,19 +9,11 @@ public:
             return false;
         }
 
-        while(n > 0) {
-            if (n % 3 == 0) {
-                n = n / 3;
-            } else {
-                if (n == 1){
-                    return true;
-                } else {
-                    return false;
-                }
-            }
+        while(n % 3 == 0) {
+           n /= 3;
         }
 
-        return false;
+        return n == 1;
     }
 
     /*
@@ -30,7 +22,35 @@ public:
         Space Complexity : O(1)
     */
 
+    /*
+        Note : The above solution is iterative solution. We can write the recursive solution also.
+    */
+
+    bool isPowerOfThreeRec(int n) {
+
+        // Base case 
+        if ( n <= 0) {
+            return false;
+        }
+
+        if( n == 1) {
+            return true;
+        }
+
+        if (n % 3 != 0) {
+            return false;
+        }
+
+        return isPowerOfThreeRec(n / 3);
+    }
+
+    /*
+        Analysis:
+        Time Complexity  : O(logn)
+        Space Complexity : O(logn)
+    */
+
     bool isPowerOfThree(int n) {
-        return solution1(n);
+        return isPowerOfThreeRec(n);
     }
 };
