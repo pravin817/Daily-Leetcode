@@ -10,9 +10,7 @@ public:
         }
 
         while(n > 0) {
-            int remainder = n % 3;
-
-            if (remainder == 0) {
+            if (n % 3 == 0) {
                 n = n / 3;
             } else {
                 if (n == 1){
@@ -21,7 +19,6 @@ public:
                     return false;
                 }
             }
-
         }
 
         return false;
@@ -32,8 +29,6 @@ public:
         Time Complexity  : O(logn)  ---> log n base 3
         Space Complexity : O(1)
     */
-
-
 
     bool isPowerOfThree(int n) {
         return solution1(n);
