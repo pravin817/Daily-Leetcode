@@ -50,7 +50,43 @@ public:
         Space Complexity : O(logn)
     */
 
+
+    /*
+        Solution - 3 : If the number is power of 3 then 
+
+                    3^x = n
+
+                    take log on both side
+
+                    log(3^x) = log(n)
+
+                    x.log(3) = log(n)
+
+                                log(n)
+                    x         = ------  
+                                log(3)
+
+    */
+
+    bool solution3(int n) {
+        
+        // Base case
+        if (n <= 0) {
+            return false;
+        }
+
+        double x = log10(n) / log10(3);
+
+        return x == (int)x;
+    }
+
+    /*
+        Analysis:
+            Time Complexity  : O(1)
+            Space Complexity : O(1)
+    */
+
     bool isPowerOfThree(int n) {
-        return isPowerOfThreeRec(n);
+        return solution3(n);
     }
 };
