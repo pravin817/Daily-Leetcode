@@ -44,7 +44,60 @@ class Solution {
             Space Complexity : O(1)
     */
 
+    // We can optimised this solution by using the hashMap
+    private int[] optimalSolution(int[] nums, int target) {
+        int length = nums.length;
+
+        Map<Integer,Integer> map = new HashMap<Integer, Integer>();
+
+        // Add the element and its index to hashMap
+        for(int i = 0; i < length; ++i) {
+            map.put(nums[i], i);
+        }
+
+        // Traverse the array and check if we get the elements whose sum equals to target
+        for (int i = 0; i < length; ++i) {
+            int complement = target - nums[i];
+
+            if(map.containsKey(complement) && map.get(complement) != i ) {
+                return new int[] {map.get(complement), i};
+            }
+        }
+
+        return new int[]{};
+    }
+    /*
+        Analysis:
+            Time Complexity  : O(n)
+            Space Complexity : O(n)
+    */
+
+    // Instead of the two pass we can solve this in a single pass
+    private int[] optimalSolution2(int[] nums, int target) {
+        Map<Integer, Integer> hashMap = new HashMap<Integer, Integer>();
+
+        for (int i = 0; i < nums.length; ++i) {
+            int complement = target - nums[i];
+
+            // Check if the complement is present in hashMap
+            if(hashMap.containsKey(complement)) {
+                return new int[] {i, hashMap.get(complement)};
+            }
+
+            // Add the entry to the map
+            hashMap.put(nums[i],i);
+        }
+
+        return new int[] {};
+    }
+
+    /*
+        Analysis:
+            Time Complexity  : O(n)
+            Space Complexity : O(n)
+    */
+
     public int[] twoSum(int[] nums, int target) {
-        return betterSolution(nums, target);
+        return optimalSolution2(nums, target);
     }
 }
