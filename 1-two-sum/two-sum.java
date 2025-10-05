@@ -1,6 +1,4 @@
 class Solution {
-
-
     // Function used to find the indices of the elements whose sum equal to target
     private int[] bruteForceSolution(int[] nums, int target) {
         int length = nums.length;
