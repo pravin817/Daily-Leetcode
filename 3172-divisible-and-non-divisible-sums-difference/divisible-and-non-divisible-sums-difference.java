@@ -20,7 +20,19 @@ class Solution {
             Space Complexity : O(1)
     */
 
+    // Solution - 2 By simplifying the equations
+    private int solution2(int n, int m) {
+        int k = n / m;
+        return n *(n + 1) / 2 - k*(k+1)*m;
+    }
+
+    /*
+        Analysis:
+            Time COmplexity  : O(1)
+            Space Complexity : O(1)
+    */
+
     public int differenceOfSums(int n, int m) {
-        return solve(n,m);
+        return solution2(n,m);
     }
 }
