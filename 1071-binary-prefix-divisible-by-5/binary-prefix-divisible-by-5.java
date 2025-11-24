@@ -4,7 +4,7 @@ class Solution {
         List<Boolean> result = new ArrayList<Boolean>();
         int prefix = 0;
         for (int num: nums) {
-            prefix = (prefix * 2 + num) % 5;
+            prefix = ((prefix << 1) + num) % 5;
             result.add(prefix == 0);
         }
 
