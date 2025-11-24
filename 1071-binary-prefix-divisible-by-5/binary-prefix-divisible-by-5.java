@@ -1,17 +1,11 @@
 class Solution { 
 
     public List<Boolean> prefixesDivBy5(int[] nums) {
-        ArrayList<Boolean> result = new ArrayList<Boolean>();
-        int number = 0;
+        List<Boolean> result = new ArrayList<Boolean>();
+        int prefix = 0;
         for (int num: nums) {
-
-            number = (number * 2 + num) % 5;
-
-            if (number == 0) {
-                result.add(true);
-            } else {
-                result.add(false);
-            }
+            prefix = (prefix * 2 + num) % 5;
+            result.add(prefix == 0);
         }
 
         return result;
