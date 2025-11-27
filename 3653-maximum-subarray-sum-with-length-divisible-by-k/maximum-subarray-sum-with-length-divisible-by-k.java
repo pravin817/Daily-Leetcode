@@ -37,21 +37,22 @@ class Solution {
         return res;
     }
 
-    static long kadane(int[] nums) {
-        long res = Long.MIN_VALUE;
-        long curr = 0;
+    private long kadane(int[] nums) {
+        long maxSum = Long.MIN_VALUE;
+        long currentSum = 0;
 
-        for (int i = 0; i < nums.length; i++) {
-            if (curr + nums[i] > nums[i]) {
-                curr += nums[i];
-            } else {
-                curr = nums[i];
+        for (int i = 0; i < nums.length; ++i) {
+            currentSum += nums[i];
+
+            if (currentSum > maxSum) {
+                maxSum = currentSum;
             }
-            if (curr > res) {
-                res = curr;
+
+            if (currentSum < 0) {
+                currentSum = 0;
             }
         }
-        return res;
+        return maxSum;
     }
 }
 
