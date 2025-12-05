@@ -67,7 +67,37 @@ class Solution {
             Space Complexity : O(n)
     */
 
+    // We can further optimised this 
+    // As we want to find the two partitions such that x + y = sum
+    // If sum is odd means 
+    //      x is odd and y is even
+    //              OR
+    //      x is even and y is odd
+    // then there is no partitions that satisfies the our condition.
+    //
+    // But x + y = sum and sum is even then there are below possiblities
+    //      x is odd and y is odd ===> x - y is even
+    //      x is even and y is even ===> x - y is even
+    // the the possible partitions are nums.length - 1;
+
+    private int countPartitionsOptimsed(int[] nums) {
+        int sum = 0;
+
+        // O(n)
+        for (int num : nums) {
+            sum += num;
+        }
+
+        return (sum % 2 == 0) ? nums.length - 1 : 0;
+    } 
+
+    /*
+        Analysis:
+            Time Complexity  : O(n)
+            Space Complexity : O(1)
+    */
+
     public int countPartitions(int[] nums) {
-        return countPartitionsUsingPrefixSum(nums);
+        return countPartitionsOptimsed(nums);
     }
 }
