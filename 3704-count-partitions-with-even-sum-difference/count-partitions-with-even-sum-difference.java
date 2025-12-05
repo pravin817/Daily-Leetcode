@@ -35,7 +35,39 @@ class Solution {
             Space Complexity : O(1)
     */
 
+    // Note : We can optimised this solution to time complexity : O(n) and space complexity : O(n) using the prefixSum
+
+    private int countPartitionsUsingPrefixSum(int[] nums) {
+        int n = nums.length;
+        int[] prefixSum = new int[n]; // O(n)
+        int currentSum = 0, count = 0;
+
+        // O(n)
+        for (int end = n - 1; end >= 0; --end) {
+            currentSum += nums[end];
+            prefixSum[end] = currentSum;
+        }
+
+        // O(n)
+        currentSum = 0;
+        for (int i = 0; i < nums.length - 1; ++i) {
+            currentSum += nums[i];
+
+            if ((currentSum - prefixSum[i+1]) % 2 == 0) {
+                count += 1;
+            }
+        }
+
+        return count;
+    }
+
+    /*
+        Analysis:
+            Time Complexity  : O(n)
+            Space Complexity : O(n)
+    */
+
     public int countPartitions(int[] nums) {
-        return calculatePartitions(nums);
+        return countPartitionsUsingPrefixSum(nums);
     }
 }
