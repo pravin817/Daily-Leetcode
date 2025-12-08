@@ -22,7 +22,30 @@ class Solution {
             Space Complexity : O(1)
     */
 
+    private int optimalSolution(int n) {
+        int count = 0;
+
+        for (int a = 1; a <= n; ++a) {
+            for (int b = a+1; b <= n; ++b) {
+                int sumSquare = a * a + b * b;
+
+                int c = (int) Math.sqrt(sumSquare);
+
+                if (c <= n && c * c == sumSquare) {
+                    count += 2;
+                }
+            }
+        }
+
+        return count;
+    }
+    /*
+        Analysis:
+            Time Complexity  : O(n^2 log n)
+            Space Complexity : O(1)
+    */
+
     public int countTriples(int n) {
-        return bruteForceSolution(n);
+        return optimalSolution(n);
     }
 }
