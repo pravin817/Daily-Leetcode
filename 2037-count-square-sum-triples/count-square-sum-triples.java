@@ -16,6 +16,12 @@ class Solution {
         return count;
     }
 
+    /*
+        Analysis:
+            Time Complexity  : O(n^3)
+            Space Complexity : O(1)
+    */
+
     public int countTriples(int n) {
         return bruteForceSolution(n);
     }
