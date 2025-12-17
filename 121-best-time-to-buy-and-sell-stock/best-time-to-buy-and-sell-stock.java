@@ -22,16 +22,9 @@ class Solution {
 
     private int optimsedSolution(int[] prices) {
         int maxProfit = 0;
-        int minimumProfit = Integer.MAX_VALUE;
         int maximumProfit = Integer.MIN_VALUE;
         int n = prices.length;
-        int[] minProfitTracker = new int[n];
         int[] maxProfitTracker = new int[n];
-
-        for (int i = 0; i < n; ++i) {
-            minimumProfit = Math.min(minimumProfit, prices[i]);
-            minProfitTracker[i] = minimumProfit;
-        }
 
         for (int i = n-1; i >= 0; --i) {
             maximumProfit = Math.max(maximumProfit, prices[i]);
@@ -39,7 +32,7 @@ class Solution {
         }
 
         for (int i = 0; i < n; ++i) {
-            maxProfit = Math.max(maxProfit, maxProfitTracker[i] - minProfitTracker[i]);
+            maxProfit = Math.max(maxProfit, maxProfitTracker[i] - prices[i]);
         }
 
         return maxProfit;
@@ -47,8 +40,8 @@ class Solution {
 
     /*
         Analysis:
-            Time Complexity  : O(3n) -> O(n)
-            Space Complexity : O(2n) -> O(n)
+            Time Complexity  : O(2n) -> O(n)
+            Space Complexity : O(n) -> O(n)
     */
 
     public int maxProfit(int[] prices) {
