@@ -27,7 +27,7 @@ class Solution {
                 }
             }
         }
-        return new int[]{-1,-1};
+        return new int[]{};
     }
 
     /*
@@ -44,12 +44,15 @@ class Solution {
             int complement = target - nums[i];
 
             if (elementTracker.containsKey(complement)) {
-                return new int[] {i, elementTracker.get(complement)};
+                return new int[] {elementTracker.get(complement), i};
             }
+
+            // Put the element into the hashmap
             elementTracker.put(nums[i], i);
         }
 
-        return new int[]{-1,-1};
+        // return the empty array
+        return new int[]{};
     }
 
     /*  
