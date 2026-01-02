@@ -1,5 +1,25 @@
 class Solution {
 
+    // Brute Force Solution - As the repeated element is repeated more the n. and other elements are unique. We can easily find the repeated element which is repeated more than onces and the other elements (n+1) elements are unique.
+
+    private int solution1(int[] nums) {
+        for (int i = 0; i < nums.length; ++i) {
+            for (int j = i+1; j < nums.length; ++j) {
+                if (nums[i] == nums[j]) {
+                    return nums[i];
+                }
+            }
+        }
+
+        // As there is always solution exist. But it is good to return -1 if the solution is not exists.
+        return -1;
+    }
+    /*
+        Analysis:
+            Time Complexity  : O(n^2)
+            Space Complexity : O(1)
+    */
+
     // Solution
     private int getRepeatedNTimesElement(int[] nums) {
         int length = nums.length;
@@ -50,6 +70,6 @@ class Solution {
     */
 
     public int repeatedNTimes(int[] nums) {
-        return getRepeatedElement(nums);
+        return solution1(nums);
     }
 }
