@@ -56,19 +56,39 @@ class Solution {
     */
 
     // Optimised solution
+    // public void moveZeroes(int[] nums) {
+    //     int length = nums.length;
+    //     int start = 0, current = 0;
+
+    //     while (current < length) {
+    //         if (nums[current] == 0) {
+    //             current++;
+    //             continue;
+    //         }
+
+    //         swap(nums, current, start);
+    //         start++;
+    //         current++;
+    //     }
+    // }
+
+    /*
+        Analysis:
+            Time Complexity  : O(n)
+            Space Complexity : O(1)
+    */
+
+    // More optimal solution
     public void moveZeroes(int[] nums) {
-        int length = nums.length;
-        int start = 0, current = 0;
-
-        while (current < length) {
-            if (nums[current] == 0) {
-                current++;
-                continue;
+        int i = 0;
+        for (int num: nums) {
+            if (num != 0) {
+                nums[i++] = num;
             }
+        }
 
-            swap(nums, current, start);
-            start++;
-            current++;
+        while (i < nums.length) {
+            nums[i++] = 0;
         }
     }
 
