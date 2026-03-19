@@ -4,13 +4,13 @@ class Solution {
     private int[] bruteForceSolution(int[] nums, int target) {
         for (int i = 0; i < nums.length; ++i) {
             for (int j = 0; j < nums.length; ++j) {
-                if(nums[i] + nums[j] == target && i != j) {
-                    return new int[]{i, j};
+                if (nums[i] + nums[j] == target && i != j) {
+                    return new int[] { i, j };
                 }
             }
         }
 
-        return new int[]{-1, -1};
+        return new int[] { -1, -1 };
     }
     /*
         Analysis:
@@ -20,14 +20,14 @@ class Solution {
 
     // Little bit optimisation
     private int[] solutionTwo(int[] nums, int target) {
-        for(int i = 0; i < nums.length; ++i) {
-            for (int j = i+1; j < nums.length; ++j) {
-                if(nums[i] + nums[j] == target) {
-                    return new int[]{i, j};
+        for (int i = 0; i < nums.length; ++i) {
+            for (int j = i + 1; j < nums.length; ++j) {
+                if (nums[i] + nums[j] == target) {
+                    return new int[] { i, j };
                 }
             }
         }
-        return new int[]{};
+        return new int[] {};
     }
 
     /*
@@ -44,7 +44,7 @@ class Solution {
             int complement = target - nums[i];
 
             if (elementTracker.containsKey(complement)) {
-                return new int[] {elementTracker.get(complement), i};
+                return new int[] { elementTracker.get(complement), i };
             }
 
             // Put the element into the hashmap
@@ -52,7 +52,7 @@ class Solution {
         }
 
         // return the empty array
-        return new int[]{};
+        return new int[] {};
     }
 
     /*  
