@@ -48,17 +48,17 @@ class Solution {
         Map<Character, Integer> freqTracker = new HashMap<Character, Integer>();
 
         for (int idx = 0; idx < s.length(); ++idx) {
-            freqTracker.put(s.charAt(idx), freqTracker.getOrDefault(s.charAt(idx), 0) + 1);
+            char ch = s.charAt(idx);
+            freqTracker.put(ch, freqTracker.getOrDefault(ch, 0) + 1);
         }
 
         for (int idx = 0; idx < t.length(); ++idx) {
-            freqTracker.put(t.charAt(idx), freqTracker.getOrDefault(t.charAt(idx), 0) - 1);
-        }
-
-        for (Map.Entry<Character, Integer> entry : freqTracker.entrySet()) {
-            if (entry.getValue() != 0) {
+            char ch = t.charAt(idx);
+            if (!freqTracker.containsKey(ch) || freqTracker.get(ch) == 0) {
                 return false;
             }
+
+            freqTracker.put(ch, freqTracker.get(ch) - 1);
         }
 
         return true;
