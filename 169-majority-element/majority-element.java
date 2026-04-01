@@ -26,7 +26,18 @@ class Solution {
             Space Complexity : O(1)
     */
 
+    // Better Solution using sorting
+    private int solution2(int[] nums) {
+        Arrays.sort(nums);
+        return nums[nums.length / 2];
+    }
+    /*
+        Analysis:
+            Time Complexity  : O(nlogn)
+            Space Complexity : O(1)
+    */
+
     public int majorityElement(int[] nums) {
-        return solution1(nums);
+        return solution2(nums);
     }
 }
