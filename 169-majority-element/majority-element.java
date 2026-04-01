@@ -61,8 +61,53 @@ class Solution {
             Space Complexity : O(n)
     */
 
+    // Optimized solution by applying the panalty
+    private int solution4(int[] nums) {
+        int current = 0, count = 0;
 
+        for (int num : nums) {
+            if (count == 0) {
+                current = num;
+            }
+
+            count += (current == num) ? 1 : -1;
+        }
+
+        return current;
+    }
+    /*
+        Analysis:
+            Time Complexity  : O(n)
+            Space Complexity : O(1)
+    */
+
+
+    // As the majority Element occures more than n / 2 times then we can choose any element from the nums and check if it counts is greater than n /2
+    private int solution5(int[] nums) {
+        int n = nums.length;
+        Random rand = new Random();
+
+        while(true) {
+            int candidate = nums[rand.nextInt(n)];
+            int count = 0;
+
+            for (int num : nums) {
+                if (candidate == num) {
+                    count++;
+                }
+            }
+
+            if (count > n / 2) {
+                return candidate;
+            }
+        }
+    }
+    /*
+        Analysis:
+            Time Complexity  : O(n)
+            Space Complexity : O(1)
+    */
     public int majorityElement(int[] nums) {
-        return solution3(nums);
+        return solution5(nums);
     }
 }
