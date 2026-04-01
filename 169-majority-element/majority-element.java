@@ -37,7 +37,32 @@ class Solution {
             Space Complexity : O(1)
     */
 
+    // Better Solution using hashMap
+    private int solution3(int[] nums) {
+        int n = nums.length;
+        Map<Integer, Integer> frequencyTracker = new HashMap<Integer, Integer>();
+
+        for (int num : nums) {
+            frequencyTracker.put(num, frequencyTracker.getOrDefault(num, 0) + 1);
+        }
+
+        for (Map.Entry<Integer, Integer> entry : frequencyTracker.entrySet()) {
+            if (entry.getValue() > n / 2) {
+                return entry.getKey();
+            }
+        }
+
+        return -1;
+    }
+
+    /*
+        Analysis:
+            Time Complexity  : O(n)
+            Space Complexity : O(n)
+    */
+
+
     public int majorityElement(int[] nums) {
-        return solution2(nums);
+        return solution3(nums);
     }
 }
