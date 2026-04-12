@@ -1,15 +1,32 @@
-class Solution {
+enum Signal {
+    GREEN("Green"),
+    ORANGE("Orange"),
+    RED("Red"),
+    INVALID("Invalid");
 
+    private final String value;
+
+    Signal(String value) {
+        this.value = value;
+    }
+
+    public String getValue() {
+        return value;
+    }
+}
+
+
+class Solution {
     // Brute Force Solution
     private String solution1(int timer) {
         if (timer == 0) {
-            return "Green";
+            return Signal.GREEN.getValue();
         } else if (timer == 30) {
-            return "Orange";
+            return Signal.ORANGE.getValue();
         } else if (timer > 30 && timer <= 90) {
-            return "Red";
+            return Signal.RED.getValue();
         } else {
-            return "Invalid";
+            return Signal.INVALID.getValue();
         }
     }
     /*
