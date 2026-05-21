@@ -30,7 +30,7 @@ class Solution {
     */
 
     private int betterSolution(int[] nums) {
-        int first = Integer.MIN_VALUE, second = Integer.MIN_VALUE, third = Integer.MIN_VALUE;
+        long first = Long.MIN_VALUE, second = Long.MIN_VALUE, third = Long.MIN_VALUE;
 
         for (int num : nums) {
 
@@ -39,20 +39,20 @@ class Solution {
                 continue;
             }
 
-            if (num > first) {
+            if (num >= first) {
                 third = second;
                 second = first;
                 first = num;
-            } else if (num > second) {
+            } else if (num >= second) {
                 third = second;
                 second = num;
-            } else if (num > third) {
+            } else if (num >= third) {
                 third = num;
             }
         }
 
         // If third maximum element does not exist then return the maximum number
-        return third != Integer.MIN_VALUE ? third : first;
+        return third != Long.MIN_VALUE ? (int) third : (int) first;
     }
 
     /*
@@ -62,6 +62,6 @@ class Solution {
     */
 
     public int thirdMax(int[] nums) {
-        return bruteForceSolution(nums);
+        return betterSolution(nums);
     }
 }
