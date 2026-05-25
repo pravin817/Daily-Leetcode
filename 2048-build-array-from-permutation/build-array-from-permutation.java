@@ -13,11 +13,31 @@ class Solution {
     /*
         Analysis:
             Time Complexity :  O(n)
+            Space Complexity : O(n)
+    */
+
+    // Optimal Solution by modifying the actual array
+    private int[] optimalSolution(int[] nums) {
+
+        for (int idx = 0; idx < nums.length; idx++) {
+            nums[idx] = nums[idx] + 1000 * (nums[nums[idx]] % 1000);
+        }
+
+        for (int idx = 0; idx < nums.length; idx++) {
+            nums[idx] = nums[idx] / 1000;
+        }
+
+        return nums;
+    }
+
+    /*
+        Analysis:
+            Time Complexity  : O(n)
             Space Complexity : O(1)
     */
 
     public int[] buildArray(int[] nums) {
-        return bruteForceSolution(nums);
+        return optimalSolution(nums);
     }
 
 }
