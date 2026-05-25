@@ -1,5 +1,6 @@
 class Solution {
-    public int[] buildArray(int[] nums) {
+
+    private int[] bruteForceSolution(int[] nums) {
         int[] result = new int[nums.length];
 
         for (int idx = 0; idx < nums.length; idx++) {
@@ -8,10 +9,14 @@ class Solution {
 
         return result;
     }
-
     /*
         Analysis:
             Time Complexity :  O(n)
             Space Complexity : O(1)
     */
+
+    public int[] buildArray(int[] nums) {
+        return bruteForceSolution(nums);
+    }
+
 }
