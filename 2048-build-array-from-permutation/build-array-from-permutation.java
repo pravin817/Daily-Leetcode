@@ -39,5 +39,4 @@ class Solution {
     public int[] buildArray(int[] nums) {
         return optimalSolution(nums);
     }
-
 }
