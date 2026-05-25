@@ -1,5 +1,6 @@
 class Solution {
 
+    // Brute force solution simple implementation
     private int[] bruteForceSolution(int[] nums) {
         int[] result = new int[nums.length];
 
