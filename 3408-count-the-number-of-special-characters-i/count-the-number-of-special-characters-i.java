@@ -31,7 +31,31 @@ class Solution {
             Spacd Complexity : O(26) -> O(1)
     */
 
+    private int optimalSolution(String word) {
+        Set<Character> hashSet = new HashSet<Character>();
+        int count = 0;
+
+        for (char ch : word.toCharArray()) {
+            hashSet.add(ch);
+        }
+
+        // Check if the pair exist
+        for (char ch = 'a'; ch <= 'z'; ch++) {
+            if (hashSet.contains(ch) && hashSet.contains((char)(ch - 'a' + 'A'))) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    /*
+        Analysis:
+            Time Complexity  : O(n)
+            Space Complexity : O(26) -> 0(1)
+    */
+
     public int numberOfSpecialChars(String word) {
-        return bruteForceSolution(word);
+        return optimalSolution(word);
     }
 }
