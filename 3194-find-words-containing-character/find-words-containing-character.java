@@ -15,7 +15,7 @@ class Solution {
 
     /*
         Analysis:
-            Time Complexity  : O(n)
+            Time Complexity  : O(n*m)  -> Where n is the number of the words and m is the length of the each word
             Space Complexity : O(1)
     */
 }
