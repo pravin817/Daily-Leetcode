@@ -3,9 +3,7 @@ class Solution {
         List<Integer> result = new ArrayList<Integer>();
 
         for (int idx = 0; idx < words.length; idx++) {
-            String word = words[idx];
-
-            if (word.indexOf(x) != -1) {
+              if (words[idx].indexOf(x) != -1) {
                 result.add(idx);
             }
         }
