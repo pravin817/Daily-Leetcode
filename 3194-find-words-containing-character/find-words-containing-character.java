@@ -5,7 +5,7 @@ class Solution {
         for (int idx = 0; idx < words.length; idx++) {
             String word = words[idx];
 
-            if (word.contains(String.valueOf(x))) {
+            if (word.indexOf(x) != -1) {
                 result.add(idx);
             }
         }
