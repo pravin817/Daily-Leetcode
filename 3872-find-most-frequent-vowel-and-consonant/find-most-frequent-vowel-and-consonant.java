@@ -1,32 +1,27 @@
 class Solution {
-
-    // Function used to check if the character is vowel or not
-    private boolean isVowel(char ch) {
-        return ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u';
-    }
-
     public int maxFreqSum(String s) {
-        int[] freqTracker = new int[26];
-        int maxConsonantFreq = 0;
-        int maxVowelFreq = 0;
+        int[] freq = new int[26];
+        int consonant = 0;
+        int vowel = 0;
 
-        for (int idx = 0; idx < s.length(); idx++) {
-            char ch = s.charAt(idx);
-            freqTracker[ch - 'a']++;
-        }
+        for (char ch : s.toCharArray()) {
+            int idx = ch - 'a';
+            int currentFreq = ++freq[idx];
 
-        // Now get the maximum frequency for the vowel and consonants
-        for (int idx = 0; idx < 26; idx++) {
-            char currentChar = (char) ('a' + idx);
-
-            if (isVowel(currentChar)) {
-                maxVowelFreq = Math.max(maxVowelFreq, freqTracker[idx]);
-            } else {
-                maxConsonantFreq = Math.max(maxConsonantFreq, freqTracker[idx]);
+            switch(ch) {
+                case 'a':
+                case 'e':
+                case 'i':
+                case 'o':
+                case 'u':
+                    vowel = Math.max(vowel, currentFreq);
+                    break;
+                default:
+                    consonant = Math.max(consonant, currentFreq);
             }
         }
 
-        return maxVowelFreq + maxConsonantFreq;
+        return vowel + consonant;
     }
 
     /*
