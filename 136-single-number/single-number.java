@@ -1,6 +1,6 @@
 class Solution {
 
-    // Track the frequecy for the each element and return the element whose frequecency is one
+    // Track the frequency for the each element and return the element whose frequency is one
     private int solution1(int[] nums) {
         Map<Integer, Integer> freq = new HashMap<Integer, Integer>();
 
@@ -56,8 +56,8 @@ class Solution {
 
     /*
         Analysis:
-            Time Complexity : O(n)
-            Space Copelxity : O(1)
+            Time Complexity  : O(n)
+            Space Compelxity : O(1)
     */
 
     public int singleNumber(int[] nums) {
