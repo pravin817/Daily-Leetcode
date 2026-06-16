@@ -46,7 +46,47 @@ class Solution {
             Space Complexity : O(1)
     */
 
+
+    // But here is small bug in the formula for the finding the mid of the array
+    // The formula that we have used above was: 
+    //    int mid = (left + right ) / 2;
+    // What If the value of left and right is near equal to the Integer.MAX_VALUE in this case it will be overflow and gaves us negative value.
+    // So inorder to resolve this issue we can use the same formula by modifying it as below
+    // int mid = left + (right - left)
+    //                  --------------
+    //                         2
+    // int mid = 2 * left + right - left
+    //          -------------------------
+    //                     2
+    //         = left + right
+    //          --------------
+    //                2
+
+    private int binarySearchImproved(int[] nums, int target) {
+        int left = 0;
+        int right = nums.length - 1;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+
+            if (nums[mid] == target) {
+                return mid;
+            } else if (nums[mid] > target) {
+                right = mid - 1;
+            } else {
+                left = mid + 1;
+            }
+        }
+
+        return -1;
+    }
+    /*
+        Analysis:
+            Time Complexity  : O(logn)
+            Space Complexity : O(1)
+    */
+
     public int search(int[] nums, int target) {
-        return binarySearch(nums, target);
+        return binarySearchImproved(nums, target);
     }
 }
