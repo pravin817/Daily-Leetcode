@@ -18,7 +18,35 @@ class Solution {
             Space Complexity : O(1)
     */
 
+
+    // Solution - 2 : As the elements of the array are sorted in the asceding order we can use the binary search to find the target element in the array. If the target element is found in the array then we will return its index else we will return -1 indicating that the target element is not present in the array.
+
+    private int binarySearch(int[] nums, int target) {
+        int left = 0;
+        int right = nums.length - 1;
+
+        while (left <= right) {
+            int mid = (left + right) / 2;
+
+            if (nums[mid] == target) {
+                return mid;
+            } else if(nums[mid] > target) {
+                right = mid - 1;
+            } else {
+                left = mid + 1;
+            }
+        }
+
+        return -1;
+    }
+
+    /*
+        Analyis:
+            Time Complexity  : O(logn)
+            Space Complexity : O(1)
+    */
+
     public int search(int[] nums, int target) {
-        return linearSearch(nums, target);
+        return binarySearch(nums, target);
     }
 }
