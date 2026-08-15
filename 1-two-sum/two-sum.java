@@ -71,7 +71,32 @@ class Solution {
             Space Complexity : O(1)
     */
 
+    // Solution - 4 : We can solve this problem statement in single loop
+    private int[] solution4(int[] nums, int target) {
+        Map<Integer, Integer> elementTracker = new HashMap<Integer, Integer>();
+
+        for (int idx = 0; idx < nums.length; idx++) {
+            int complement = target - nums[idx];
+
+            if (elementTracker.containsKey(complement)) {
+                return new int[] {idx, elementTracker.get(complement)};
+            }
+
+            // Put the element with it's index
+            elementTracker.put(nums[idx], idx);
+        }
+
+        // Return the {-1, -1} in case of the pair is not found
+        return new int[]{-1, -1};
+    }
+
+    /*
+        Analysis:
+            Time Complexity  : O(n)
+            Space Complexity : O(n)
+    */
+
     public int[] twoSum(int[] nums, int target) {
-        return solution3(nums, target);
+        return solution4(nums, target);
     }
 }
