@@ -42,7 +42,36 @@ class Solution {
             Space Complexity : O(1)
     */
 
+    // Solution - 3 : We can keep the track of the element and its index. And find the complement element in the HashMap.
+    // Complement = target - nums[idx]
+    // Return the idx and the idx of the complement element
+    private int[] solution3(int[] nums, int target) {
+        Map<Integer, Integer> elementTracker = new HashMap<Integer, Integer>();
+
+        // Step - 1: Put the all elements in the hashMap
+        for (int idx = 0; idx < nums.length; idx++) {
+            elementTracker.put(nums[idx], idx);
+        }
+
+        // Step - 2: Find the complement and return the index of the current and complement element
+        for (int idx = 0; idx < nums.length; idx++) {
+            int complement = target - nums[idx];
+
+            if (elementTracker.containsKey(complement) && idx != elementTracker.get(complement)) {
+                return new int[] {idx, elementTracker.get(complement)};
+            }
+        }
+
+        // If we don't found any pair of elements where sum of two numbers is equal to the target
+        return new int[] {-1, -1}; 
+    }
+    /*
+        Analysis:
+            Time Complexity  : O(n) + O(n) = O(2n) => O(n)
+            Space Complexity : O(1)
+    */
+
     public int[] twoSum(int[] nums, int target) {
-        return solution2(nums, target);
+        return solution3(nums, target);
     }
 }
