@@ -11,7 +11,7 @@ class Solution {
 
             weight = weight % 26;
 
-            char ch = (char) ('a' + (25 - weight));
+            char ch = (char) ('z' - weight);
             builder.append(ch);
         }
 
@@ -20,7 +20,8 @@ class Solution {
 
     /*
         Analysis:
-            Time Complexity  : O(n*m)
+            Time Complexity  : O(n*m)  ==> O(k) , Here k is the total number of characters across all strings in words
             Space Complexity : O(n)
+            Auxillary Space  : O(1)
     */
 }
