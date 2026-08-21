@@ -20,8 +20,10 @@ class Solution {
 
     /*
         Analysis:
-            Time Complexity  : O(n*m)  ==> O(k) , Here k is the total number of characters across all strings in words
+            Time Complexity  : O(k)
+                                k = total number of characters across all words
             Space Complexity : O(n)
-            Auxillary Space  : O(1)
+                                n = number of words (output space)
+            Auxiliary Space  : O(1)
     */
 }
