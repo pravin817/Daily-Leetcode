@@ -20,7 +20,17 @@ class Solution {
             Space Complexity : O(1)
     */
 
+    // Solution using Math
+    private int solution2(int numBottles, int numExchange) {
+        return numBottles + ((numBottles - 1) / (numExchange - 1));
+    }
+    /*
+        Analysis:
+            Time Complexity  : O(1)
+            Space Complexity : O(1)
+    */
+
     public int numWaterBottles(int numBottles, int numExchange) {
-        return solution1(numBottles, numExchange);
+        return solution2(numBottles, numExchange);
     }
 }
