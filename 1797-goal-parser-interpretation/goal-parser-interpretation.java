@@ -3,11 +3,10 @@ class Solution {
         StringBuilder builder = new StringBuilder();
 
         for (int idx = 0; idx < command.length(); idx++) {
-            char currentChar = command.charAt(idx);
 
-            if (currentChar == 'G') {
+            if (command.charAt(idx) == 'G') {
                 builder.append('G');
-            } else if (command.startsWith("()", idx))  {
+            } else if (command.startsWith("()", idx)) {
                 builder.append('o');
                 idx++;
             } else if (command.startsWith("(al)", idx)) {
@@ -23,5 +22,6 @@ class Solution {
         Analysis:
             Time Complexity  : O(n)
             Space Complexity : O(n)
+            Auxiliary Space  : O(1) excluding output
     */
 }
