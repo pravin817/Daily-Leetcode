@@ -17,13 +17,10 @@ class Solution {
         }
 
         for (int idx = 0; idx < t.length(); ++idx) {
-            freqTracker[t.charAt(idx) - 'a']--;
-        }
-
-        for (int idx = 0; idx < 26; ++idx) {
-            if (freqTracker[idx] != 0) {
+            if (freqTracker[idx] - 'a' == 0) {
                 return false;
             }
+            freqTracker[t.charAt(idx) - 'a']--;
         }
 
         return true;
