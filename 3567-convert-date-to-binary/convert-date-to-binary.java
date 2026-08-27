@@ -5,7 +5,6 @@ class Solution {
         return s == null || s.isEmpty();
     }
 
-
     // Function used to get the binary representation of the number
     private String binary(int num) {
 
@@ -38,9 +37,11 @@ class Solution {
     }
 
     /*
-        Analysis:
-            Time Complexity  : O(logn)
-            Space Complexity : O(n)
+        Time Complexity  : O(log Y) + O(log M) + O(log D) ~= O(log Y)
+        Space Complexity : O(log Y) + O(log M) + O(log D) ~= O(log Y)
+
+        For this problem, since the date format is fixed (YYYY-MM-DD),
+        both are effectively O(1).
     */
 
     public String convertDateToBinary(String date) {
