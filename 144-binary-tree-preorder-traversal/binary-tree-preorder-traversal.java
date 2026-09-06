@@ -15,6 +15,7 @@
  */
 class Solution {
 
+    // Recursive solution
     private void preOrder(TreeNode root, List<Integer> result) {
         if (root == null) {
             return;
@@ -31,9 +32,47 @@ class Solution {
             Space Complexity : O(n)
     */
 
-    public List<Integer> preorderTraversal(TreeNode root) {
+    // Iterative solution using stack
+    private List<Integer> preOrderIterative(TreeNode root) {
+
         List<Integer> result = new ArrayList<>();
-        preOrder(root, result);
+
+        if (root == null) {
+            return result;
+        }
+
+        // Create the stack
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        stack.push(root);
+
+        while(!stack.isEmpty()) {
+            TreeNode node = stack.pop();
+
+            result.add(node.val);
+
+            if (node.right != null) {
+                stack.push(node.right);
+            }
+
+            if (node.left != null) {
+                stack.push(node.left);
+            }
+        }
+
         return result;
+    }
+
+    /*
+        Analysis:
+            Time Complexity  : O(n)
+            Space Complexity : O(n)
+    */
+
+    public List<Integer> preorderTraversal(TreeNode root) {
+        // List<Integer> result = new ArrayList<>();
+        // preOrder(root, result);
+        // return result;
+
+        return preOrderIterative(root);
     }
 }
