@@ -1,30 +1,34 @@
 class Solution {
-    public int searchInsert(int[] nums, int target) {
-        // This problem is same as to find the lower bound
 
-        int n = nums.length;
-        int low = 0;
-        int high = n-1;
 
-        int ans = n;
+    /**
+        Brute Force Solution - Linear Search
 
-        while(low<=high){
-            // find the mid 
-            int mid = low + (high - low)/2;
+        If we find the target element then returns its index else return the position
+        where we can add this element   
+    
+    */
+    private int searchIndexLinearSearch(int[] nums, int target) {
 
-            if(nums[mid]>=target){
-                ans = mid;
-                high = mid - 1;
-            }else{
-                low = mid+1;
+        for (int idx = 0; idx < nums.length; idx++) {
+            if (nums[idx] == target) {
+                return idx;
+            } else if (nums[idx] > target) {
+                return idx;
             }
         }
-        return ans;
+
+        // If the element is needed to add at the last of the array
+        return nums.length;
+    }
+
+    /*
+        Analysis:
+            Time Complexity  : O(n)
+            Space Complexity : O(1)
+    */
+
+    public int searchInsert(int[] nums, int target) {
+        return searchIndexLinearSearch(nums, target);
     }
 }
-
-/*
-    Analysis:
-    time Complexity : O(logn)
-    Sapce Complexity : O(1)
-*/    
