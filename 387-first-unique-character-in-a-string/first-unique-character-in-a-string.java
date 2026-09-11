@@ -39,7 +39,38 @@ class Solution {
     */
 
 
+    // Solution using the HashMap
+    private int solutionUsingHashMap(String s) {
+        if (isEmpty(s)) {
+            return -1;
+        }
+
+        Map<Character, Integer> counts = new HashMap<Character, Integer>();
+
+        for (int idx = 0; idx < s.length(); idx++) {  // O(n)
+            char ch = s.charAt(idx);
+            counts.put(ch, counts.getOrDefault(ch, 0) + 1);
+        }
+
+        // Get the unique character
+        for (int idx = 0; idx < s.length(); idx++) {   // O(n)
+            if (counts.get(s.charAt(idx)) == 1) {
+                return idx;
+            }
+        }
+
+        // If there is no any unique character in the string return -1
+        return -1;
+    }
+
+    /*
+        Analysis:
+            Time Complexity  : O(2n)   -> O(n)
+            Space Complexity : O(26)   -> O(1)
+    */
+
+
     public int firstUniqChar(String s) {
-        return solutionUsingArray(s);
+        return solutionUsingHashMap(s);
     }
 }
