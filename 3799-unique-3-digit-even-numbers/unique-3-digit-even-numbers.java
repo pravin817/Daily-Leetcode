@@ -1,47 +1,39 @@
 class Solution {
 
-    private Set<Integer> getThreeDigitEvenNumber(int[] digits) {
+    private int getCountOfThreeDigitNumbers(int[] digits) {
+        Set<Integer> seen = new HashSet<Integer>();
         int n = digits.length;
-        Set<Integer> result = new HashSet<Integer>();
-        boolean [] visited = new boolean[1000];
 
-        for (int i = 0; i < n; i++) {
-            if (digits[i] == 0) {
+        for (int h = 0; h < n; h++) {
+            if (digits[h] == 0) {
                 continue;
             }
 
-            for (int j = 0; j < n; j++) {
-                if (i == j) {
+            for (int t = 0; t < n; t++) {
+                if (h == t) {
                     continue;
                 }
 
-                for (int k = 0; k < n; k++) {
-                    if (i == k || j == k || digits[k] % 2 != 0) {
+                for (int u = 0; u < n; u++) {
+                    if (h == u || t == u || digits[u] % 2 != 0) {
                         continue;
                     }
 
-                    int number = digits[i] * 100 + digits[j] * 10 + digits[k];
-
-                    if (!visited[number]) {
-                        visited[number] = true;
-                        result.add(number);
-                    }
+                    int num = digits[h] * 100 + digits[t] * 10 + digits[u];
+                    seen.add(num);
                 }
             }
         }
 
-        return result;
+        return seen.size();        
     }
-
     /*
         Analsis:
             Time Complexity  : O(n^3)
-            Space Complexity : O(2n)   -> O(n)
+            Space Complexity : O(n)
     */
 
-
     public int totalNumbers(int[] digits) {
-        Set<Integer> uniqueNumbers = getThreeDigitEvenNumber(digits);
-        return uniqueNumbers.size();
+        return getCountOfThreeDigitNumbers(digits);
     }
 }
