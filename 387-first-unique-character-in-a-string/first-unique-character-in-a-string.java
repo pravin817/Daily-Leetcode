@@ -114,7 +114,37 @@ class Solution {
             Space Complexity : O(26)  -> O(1), As input is bounded to 26 lowercase letters
     */
 
+    /**
+     * Solution using stream API
+     */
+    private int solutionUsingStreamAPI(String s) {
+
+        if (isEmpty(s)) {
+            return -1;
+        }
+
+        Map<Character, Long> counts = s.chars()
+                                        .mapToObj(ch -> (char) ch)
+                                        .collect(Collectors.groupingBy(
+                                            ch -> ch,
+                                            Collectors.counting()
+                                        ));
+
+        return s.chars()
+                .mapToObj(ch -> (char) ch)
+                .filter(ch -> counts.get(ch) == 1)
+                .findFirst()
+                .map(ch -> s.indexOf(ch))
+                .orElse(-1);
+    }
+
+    /*
+        Analysis:
+            Time Complexity  : O(2n)  -> O(n), Where n is the length of the string
+            Space Complexity : O(26)  -> O(1), As input is bounded to 26 lowercase letters 
+    */
+
     public int firstUniqChar(String s) {
-        return solutionUsingArray(s);
+        return solutionUsingStreamAPI(s);
     }
 }
