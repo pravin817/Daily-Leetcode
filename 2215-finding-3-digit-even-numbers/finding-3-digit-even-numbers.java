@@ -27,16 +27,35 @@ class Solution {
             }
         }
 
-        return seen.stream()
-                    .mapToInt(Integer::intValue)
-                    .sorted()
-                    .toArray();
+        // Convert to an array sorted in ascending order
+        List<Integer> res = new ArrayList<>(seen);
+
+        // Sort the ArrayList
+        Collections.sort(res);     // O(nlogn)
+
+        // Now return the int[]
+        int[] result = new int[res.size()];
+
+        for (int idx = 0; idx < res.size(); idx++) {    // O(n)
+            result[idx] = res.get(idx);
+        }
+
+        return result;
+
+        // Same as above using stream API
+        // return seen.stream()
+        //             .mapToInt(Integer::intValue)
+        //             .sorted()
+        //             .toArray();
 
     }
 
     /*
         Analysis:
-            Time Complexity  : O(n^3)
-            Space Complexity : O(n)
+            Time Complexity  : O(n^3 + M log M)
+            Space Complexity : O(M)
+
+            Here M = min(n^3 , 10^k) be the number of even numbers that meet the requirements,
+            where n is the length of the input array and k is the number of the digits in the target even number
     */
 }
