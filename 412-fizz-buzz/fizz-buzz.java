@@ -1,28 +1,19 @@
 class Solution {
 
-    /*
-        Function    : solveFizzBuzz
-        Description : Function used to solve the Fizz Buzz challenge
-        Author      : Pravin Mhaske
-        Date        : 06/06/2025
-    */
+    // Solution - Just iterate the numbers from [1,n] and check the conditions and add the respective word
+    private List<String> solution(int n) {
+        List<String> result = new ArrayList<String>(n);
 
-    private List<String> solveFizzBuzz(int n) {
-        List<String> result = new LinkedList<String>();
+        for (int num = 1; num <= n; num++) {
 
-        for (int i = 1; i <= n; ++i) {
-
-            boolean isDivisibleBy3 = i % 3 == 0;
-            boolean isDivisibleBy5 = i % 5 == 0;
-
-            if (isDivisibleBy3 && isDivisibleBy5) {
+            if (num % 3 == 0 && num % 5 == 0) {
                 result.add("FizzBuzz");
-            } else if (isDivisibleBy3) {
+            } else if (num % 3 == 0) {
                 result.add("Fizz");
-            } else if (isDivisibleBy5) {
+            } else if (num % 5 == 0) {
                 result.add("Buzz");
             } else {
-                result.add(String.valueOf(i));
+                result.add(String.valueOf(num));
             }
         }
 
@@ -31,11 +22,11 @@ class Solution {
 
     /*
         Analysis:
-        Time Complexity  : O(n)
-        Space Complexity : O(1)
+            Time Complexity  : O(n)
+            Space Complexity : O(1), As the result is needed to return  the solution of the problem
     */
 
     public List<String> fizzBuzz(int n) {
-        return solveFizzBuzz(n);
+        return solution(n);
     }
 }
