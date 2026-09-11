@@ -4,7 +4,6 @@ class Solution {
         return s == null || s.isEmpty();
     }
 
-
     /**
      * Brute Force Solution - Double Scan using indexOf and lastIndexOf
      *
