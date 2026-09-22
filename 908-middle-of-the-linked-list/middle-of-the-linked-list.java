@@ -10,16 +10,14 @@
  */
 class Solution {
 
-    // Function used to calculate the total number of the nodes in the linked List
+    /**
+     * Counts the total number of nodes in the linked list.
+     * Used by the brute-force approach to determine the middle index.
+     */
     private int countNodes(ListNode head) {
         int count = 0;
 
-        // Base case
-        if (head == null) {
-            return 0;
-        }
-
-        while(head != null) {
+        while (head != null) {
             count++;
             head = head.next;
         }
@@ -29,16 +27,26 @@ class Solution {
 
     /*
         Analysis:
-            Time Complexity  : O(n), Where n is the number of the nodes in the linked list
+            Time Complexity  : O(n), where n is the number of nodes in the linked list
             Space Complexity : O(1)
     */
 
-    // Brute Force Solution 
-    // Find the total number of the node in the LinkedList and return the node present at ceil(total node / 2)
-    private ListNode BruteForceSolution(ListNode head) {
+    /**
+     * Brute Force Solution.
+     * Step 1: Count the total number of nodes in the list.
+     * Step 2: Walk forward total/2 steps from head to land on the middle node.
+     *
+     * Note: total/2 (integer division) correctly lands on the SECOND middle
+     * node when the list length is even, matching the problem's requirement.
+     */
+    private ListNode bruteForceSolution(ListNode head) {
+        // First pass: get the total node count
         int total = countNodes(head);
+
+        // Middle index (0-based) to stop at
         int middle = total / 2;
 
+        // Second pass: advance 'middle' steps from head
         for (int i = 0; i < middle; i++) {
             head = head.next;
         }
@@ -52,7 +60,41 @@ class Solution {
             Space Complexity : O(1)
     */
 
+    /**
+     * Two-Pointer (Slow & Fast) Solution — optimal approach.
+     *
+     * Uses two pointers starting at head:
+     *   - slow moves one node at a time.
+     *   - fast moves two nodes at a time.
+     *
+     * Since fast moves twice as fast as slow, by the time fast reaches
+     * the end of the list, slow will be positioned exactly at the middle.
+     * This also naturally resolves to the SECOND middle node for
+     * even-length lists, since fast runs out of room one step early.
+     */
+    private ListNode middleNodeTwoPointerSolution(ListNode head) {
+        if (head == null) {
+            return head;
+        }
+
+        ListNode slow = head;
+        ListNode fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        return slow;
+    }
+
+    /*
+        Analysis:
+            Time Complexity  : O(n/2) --> O(n)
+            Space Complexity : O(1)
+    */
+
     public ListNode middleNode(ListNode head) {
-        return BruteForceSolution(head);
+        return middleNodeTwoPointerSolution(head);
     }
 }
