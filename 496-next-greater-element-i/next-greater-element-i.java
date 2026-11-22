@@ -79,7 +79,7 @@ class Solution {
     /*
         Analysis:
             Time Complexity : O(m) + O(n*m) =>O(n*m)
-            Space Complexity : O(n)
+            Space Complexity : O(m)
     */
 
     private int[] nextGreaterElement(int[] nums) {
@@ -111,10 +111,8 @@ class Solution {
     }
 
     private int[] nextGreaterElementOptimsedSsolution(int[] nums1, int[] nums2) {
-
         // Result Array
         int[] result = new int[nums1.length];
-        int[] nextGreaterElement = new int[nums2.length];
         Map<Integer, Integer> map = new HashMap<Integer, Integer>();
 
         // Keep the index of the each element in the hashMap
@@ -122,32 +120,11 @@ class Solution {
             map.put(nums2[idx], idx);
         }
 
-        // Find the next greater element for the each elements in nums2
-        // for (int idx = 0; idx < nums2.length; idx++) {
-        //     int target = nums2[idx];
-        //     boolean isFound = false;
-
-        //     // Find the next greater element
-        //     for (int j = idx + 1; j < nums2.length; j++) {
-        //         if (nums2[j] > target) {
-        //             isFound = true;
-        //             break;
-        //         }
-        //     }
-
-        //     if (isFound) {
-        //         nextGreaterElement[idx] = nums2[idx + 1];
-        //     } else {
-        //         nextGreaterElement[idx] = -1;
-        //     }
-        // }
-
-        nextGreaterElement = nextGreaterElement(nums2);
+        int[] nextGreaterElement = nextGreaterElement(nums2);
 
         // Find the index
         for (int idx = 0; idx < nums1.length; idx++) {
-            int targetIdx = map.get(nums1[idx]);
-            result[idx] = nextGreaterElement[targetIdx];
+            result[idx] = nextGreaterElement[map.get(nums1[idx])];
         }
 
         return result;
